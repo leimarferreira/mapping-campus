@@ -10,18 +10,21 @@
 </head>
 
 <body>
-    <form method="post">
+    <form id="login-form" method="post">
         <img class="icon" src="resources\icons\user2.svg" alt="">
-        <label class="form-control-lg" for="email">Email</label>
-        <input class="form-control-lg" type="email" name="email" id="email">
-        <label class="form-control-lg" for="password">Senha</label>
-        <input class="form-control-lg" type="password" name="password" id="password">
+        <label class="form-label" for="email">Email</label>
+        <input required class="form-control-md" type="email" name="email" id="email">
+        <label class="form-label" for="password">Senha</label>
+        <input required class="form-control-md" type="password" name="password" id="password">
         <div class="buttons">
             <button class="button">Voltar</button>
             <button class="button" type="submit">Entrar</button>
         </div>
         
     </form>
+
+    <script src="js/script.js"></script>
+    <script src="js/login.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
