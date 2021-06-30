@@ -5,17 +5,18 @@
 body {
     display: flex;
     height: 100vh;
-    background-color: #E8F0F2;
+    background-color: #a8a2a8;
     font-family: sans-serif;
 }
 
 form {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
+    color: #388c91;
     display: flex;
     flex-direction: column;
     margin: auto;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 50px;
+    border-radius: 50px;
     box-shadow: 2px 2px 2px #CCCCCC;
 }
 
@@ -38,6 +39,30 @@ input:focus {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0;
+    margin: 10px;
+}
+
+.button {
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 100px;
+    min-height: 40px;
+}
+.input {
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 100px;
+    min-height: 40px;
+
+    
+}
+
+.icon {
+    align-self: center;
+    max-width: 180px;
+    max-height: 180px;
 }
 
 input[type=submit], button {
