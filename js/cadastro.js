@@ -17,8 +17,6 @@ const validarSenha = () => {
     const regexp = new RegExp("^.*(?=.*[a-zA-Z])(?=.*\\d).*$");
 
     return regexp.test(senha);
-
-    return true;
 };
 
 const confirmarSenha = () => {
