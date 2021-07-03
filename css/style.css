@@ -20,6 +20,25 @@ form {
     box-shadow: 2px 2px 2px #CCCCCC;
 }
 
+.headerTitle {
+    color: #388c91;  
+    margin-left: 200px;
+}
+
+.formHeader {
+    margin: auto; 
+    align-items: center; 
+    display: inline-flex;
+}
+
+
+.topInlineForm {
+    display:inline-block;
+    align-items:inherit;
+    margin: auto;
+    margin-block: 10px;
+}
+
 label {
     margin-bottom: 5px;
 }
@@ -59,11 +78,27 @@ input:focus {
     
 }
 
-.icon {
+.iconSmall {
     align-self: center;
-    max-width: 180px;
-    max-height: 180px;
+    max-width: 50px;
+    max-height: 50px;
+    margin: auto;
 }
+
+.iconMedium {
+    align-self: center;
+    max-width: 80px;
+    max-height: 80px;
+    margin: auto;
+}
+
+.iconLarge {
+    align-self: center;
+    max-width: 150px;
+    max-height: 150px;
+    margin: auto;
+}
+
 
 input[type=submit], button {
     background-color: #FFFFFF;
