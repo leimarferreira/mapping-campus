@@ -27,4 +27,6 @@ form.onsubmit = event => {
     } else {
         removeWarn("warn-invalid-password");
     }
+
+    window.location.href = "setores.html";
 }
