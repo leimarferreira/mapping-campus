@@ -9,7 +9,7 @@ body {
     font-family: sans-serif;
 }
 
-form {
+.block {
     background-color: #ffffff;
     color: #388c91;
     display: flex;
@@ -68,14 +68,13 @@ input:focus {
     min-width: 100px;
     min-height: 40px;
 }
+
 .input {
     color: #388c91;
     border: 1px solid #388c91 ;
     border-radius: 50px;
     min-width: 100px;
     min-height: 40px;
-
-    
 }
 
 .iconSmall {
@@ -83,6 +82,10 @@ input:focus {
     max-width: 50px;
     max-height: 50px;
     margin: auto;
+}
+
+.iconSmall:hover {
+    cursor: pointer;
 }
 
 .iconMedium {
@@ -97,16 +100,6 @@ input:focus {
     max-width: 150px;
     max-height: 150px;
     margin: auto;
-}
-
-
-input[type=submit], button {
-    background-color: #FFFFFF;
-    height: 30px;
-    margin-bottom: 0;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 2px 2px 1px #CCCCCC;
 }
 
 @media screen and (max-width: 600px) {
