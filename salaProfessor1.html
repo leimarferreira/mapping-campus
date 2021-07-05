@@ -29,9 +29,34 @@
         <input id="fechamentoSalaProfessor" type="time">
         <h3>Outras informações</h3>
         <label >informações adicionais: </label>
-        <input id="salaProfessor" type="text">
+        <input id="infoSalaProfessor" type="text">
         <br>
-        <button>Adicionar</button>
+        <button onclick="adicionar()">Adicionar</button>
     </div>
+    <div id="resultado"></div>
 </body>
+<script>
+    function adicionar(){
+    var nomeProfessor = document.getElementById("nomeProfessor").value;
+    var emailSalaProfessor = document.getElementById("emailSalaProfessor").value;
+    var departamentoProfessor = document.getElementById("departamentoProfessor").value;
+    var aberturaSalaProfessor = document.getElementById("aberturaSalaProfessor").value;
+    var fechamentoSalaProfessor = document.getElementById("fechamentoSalaProfessor").value;
+    var infoSalaProfessor = document.getElementById("infoSalaProfessor").value;
+    var list = document.getElementById("resultado").innerHTML;
+    
+
+    list += "<li>" + "Nome: " + nomeProfessor + "</li>";
+    list += "<li>" + "Email: " + emailSalaProfessor + "</li>";
+    list += "<li>" + "Departamento: " + departamentoProfessor + "</li>";
+    list += "<li>" + "Abertura: " + aberturaSalaProfessor + "</li>";
+    list += "<li>" + "Fechamento: " + fechamentoSalaProfessor + "</li>";
+    list += "<li>" + "informações adicionais: " + infoSalaProfessor + "</li>";
+    list += "<hr>" + "<p></p>";
+    
+
+    document.getElementById("resultado").innerHTML = list;
+    }
+</script>
+
 </html>

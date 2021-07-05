@@ -31,9 +31,36 @@
         <input id="emailProfessor" type="email">
         <h3>Outras informações</h3>
         <label >informações adicionais: </label>
-        <input id="infoAdicionaisCoordenacao" type="text">
+        <input id="infoAdicionaisAula" type="text">
         <br>
-        <button>Adicionar</button>
+        <button onclick="adicionar()">Adicionar</button>
     </div>
+    <div id="resultado"> </div>
 </body>
+<script>
+    function adicionar(){
+    var disciplina = document.getElementById("nomeDisciplina").value;
+    var descricao = document.getElementById("codDisciplina").value;
+    var turma = document.getElementById("turma").value;
+    var curso = document.getElementById("curso").value;
+    var nomeResponsavel = document.getElementById("nomeResponsavel").value;
+    var emailProfessor = document.getElementById("emailProfessor").value;
+    var infoAdicionarCoordenacao = document.getElementById("infoAdicionaisAula").value;
+    var list = document.getElementById("resultado").innerHTML;
+    
+
+    list += "<li>" + "Disciplina: " + disciplina + "</li>";
+    list += "<li>" + "Código da disciplina: " + descricao + "</li>";
+    list += "<li>" + "Turma: " + turma + "</li>";
+    list += "<li>" + "Curso: " + curso + "</li>";
+    list += "<li>" + "Nome do responsavel: " + nomeResponsavel + "</li>";
+    list += "<li>" + "Email do Professor: " + emailProfessor + "</li>";
+    list += "<li>" + "informações adicionais: " + infoAdicionaisAula + "</li>";
+    list += "<hr>" + "<p></p>";
+    
+
+    document.getElementById("resultado").innerHTML = list;
+    }
+</script>
+
 </html>

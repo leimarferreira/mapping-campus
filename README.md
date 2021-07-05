@@ -1,1 +1,2 @@
 # mapping-campus
+# As funcionálidades ainda não é o modelo final, pois ainda iremos fazer o design de como vai ser as telas e veremos a possíbilidade de adição de alguma informação a mais, o objetivo então é ter apenas uma prévia das principais informaçòes que teremos que lidar no banco de dados.

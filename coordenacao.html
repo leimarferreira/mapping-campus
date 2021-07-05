@@ -33,7 +33,35 @@
         <label >informações adicionais: </label>
         <input id="infoAdicionaisCoordenacao" type="text">
         <br>
-        <button>Adicionar</button>
+        <button onclick="adicionar()">Adicionar</button>
     </div>
+    <div id = "resultado"></div>
 </body>
+
+<script>
+    function adicionar(){
+    var nomeCoordenador = document.getElementById("nomeCoordenador").value;
+    var emailCoordenador = document.getElementById("emailCoordenador").value;
+    var nomeVice = document.getElementById("nomeVice").value;
+    var emailVice = document.getElementById("emailVice").value;
+    var aberturaCoordenacao = document.getElementById("aberturaCoordenacao").value;
+    var fechamentoCoordenacao = document.getElementById("fechamentoCoordenacao").value;
+    var infoAdicionaisCoordenacao = document.getElementById("infoAdicionaisCoordenacao").value;
+    var list = document.getElementById("resultado").innerHTML;
+    
+
+    list += "<li>" + "Coordenador: " + nomeCoordenador + "</li>";
+    list += "<li>" + "Email: " + emailCoordenador + "</li>";
+    list += "<li>" + "Vice-coordenador: " + nomeVice + "</li>";
+    list += "<li>" + "Email: " + emailVice + "</li>";
+    list += "<li>" + "Abertura: " + aberturaCoordenacao + "</li>";
+    list += "<li>" + "Fechamento: " + fechamentoCoordenacao + "</li>";
+    list += "<li>" + "informações adicionais: " + infoAdicionaisCoordenacao + "</li>";
+    list += "<hr>" + "<p></p>";
+    
+
+    document.getElementById("resultado").innerHTML = list;
+    }
+</script>
+
 </html>
