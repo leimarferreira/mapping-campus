@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #a8a2a8;
+    font-family: sans-serif;
+}
+
+.block {
+    background-color: #ffffff;
+    color: #388c91;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px #CCCCCC;
+}
+
+.headerTitle {
+    color: #388c91;
+    margin-left: 200px;
+}
+
+.largeTitle {
+    font-size: 25px;
+}
+
+.formHeader {
+    margin: auto; 
+    align-items: center; 
+    display: inline-flex;
+}
+
+
+.topInlineForm {
+    display:inline-block;
+    align-items:inherit;
+    margin: auto;
+    margin-block: 10px;
+}
+
+.circle {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    min-height: 300px;
+    border-radius: 150px;
+    text-decoration: none;
+    color: #388c91;
+    font-weight: bold;
+}
+
+.flexblock {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    border: 1px solid #CCCCCC;
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+    margin: 10px;
+}
+
+.button {
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 100px;
+    min-height: 40px;
+}
+
+.btnlink {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 150px;
+    min-height: 40px;
+    padding: 2px 6px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input {
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 100px;
+    min-height: 40px;
+}
+
+.iconSmall:hover {
+    cursor: pointer;
+}
+
+.iconMedium {
+    align-self: center;
+    max-width: 80px;
+    max-height: 80px;
+    margin: auto;
+}
+
+.iconLarge {
+    align-self: center;
+    max-width: 150px;
+    max-height: 150px;
+    margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .block {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .block {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .block {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .block {
+        width: 25%;
+    }
+}
