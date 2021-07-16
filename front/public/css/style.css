@@ -3,10 +3,25 @@
 }
 
 body {
-    display: flex;
-    height: 100vh;
+    display: grid;
     background-color: #a8a2a8;
     font-family: sans-serif;
+}
+
+.pageHeader {
+    text-align: center;
+    display: block;
+    margin: auto;
+    padding: 50px;
+    color: rgb(56,140,145);
+}
+
+.pageFooter {
+    text-align: center;
+    display: block;
+    margin: auto;
+    padding: 50px;
+    color: rgb(56,140,145);
 }
 
 .block {
@@ -158,4 +173,13 @@ input:focus {
     .block {
         width: 25%;
     }
+}
+
+#login-form {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
