@@ -1,6 +1,6 @@
 <template>
 <form id="login-form" class="block" @submit="onSubmit">
-    <img class="iconMedium"  src="../res/icons/user2.svg">
+    <img class="iconMedium"  src="../assets/user2.svg">
     <label class="form-label">Login</label>
     <input required class="form-control-md" id="email" v-model="login" type="text">
     <label class="form-label" for="">Senha</label>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="pageHeader">
-            <h1>Recepcao</h1>
+            <PageHeader title="Recepcao"/>
         </div>
 
         <form class="block" @submit="onSubmit">
@@ -24,15 +24,20 @@
         </form>
 
         <div class="pageFooter">
-            <img class="iconMedium"  src="../res/icons/arrow_left.svg" @click="goBack">
-            <h3>Voltar</h3>
+            <PageFooter/>
         </div>
     </div>
 </template>
 
 <script>
+import PageHeader from "./PageHeader.vue"
+import PageFooter from "./PageFooter.vue"
 export default {
     name: "Recepcao",
+    components: {
+        PageHeader,
+        PageFooter,
+    },
     data() {
         return {
             name: "",
@@ -46,10 +51,6 @@ export default {
         onSubmit() {
             console.log("Novo Responsavel: ",this.login, "email:", this.email)
         },
-        goBack()
-        {
-            console.log("returning")
-        }
     }
 }
 </script>

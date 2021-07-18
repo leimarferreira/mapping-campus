@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="pageHeader">
-            <h1>Tesouraria</h1>
+            <PageHeader title="Tesouraria"/>
         </div>
 
         <form class="block" @submit="onSubmit">
@@ -24,15 +24,20 @@
         </form>
 
         <div class="pageFooter">
-            <img class="iconMedium"  src="../res/icons/arrow_left.svg" @click="goBack">
-            <h3>Voltar</h3>
+            <PageFooter/>
         </div>
     </div>
 </template>
 
 <script>
+import PageHeader from "./PageHeader.vue"
+import PageFooter from "./PageFooter.vue"
 export default {
     name: "Tesouraria",
+    components: {
+        PageHeader,
+        PageFooter,
+    },
     data() {
         return {
             name: "",
