@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Login from "./components/Login.vue"
+import Login from "./views/Login.vue"
 import Secretaria from "./components/Secretaria.vue"
 import Coordenacao from "./components/Coordenacao.vue"
 import Tesouraria from "./components/Tesouraria.vue"

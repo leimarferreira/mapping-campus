@@ -50,25 +50,11 @@ body {
     display: inline-flex;
 }
 
-
 .topInlineForm {
     display:inline-block;
     align-items:inherit;
     margin: auto;
     margin-block: 10px;
-}
-
-.circle {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 300px;
-    min-height: 300px;
-    border-radius: 150px;
-    text-decoration: none;
-    color: #388c91;
-    font-weight: bold;
 }
 
 .flexblock {
@@ -131,10 +117,6 @@ input:focus {
     border-radius: 50px;
     min-width: 100px;
     min-height: 40px;
-}
-
-.iconSmall:hover {
-    cursor: pointer;
 }
 
 .iconMedium {

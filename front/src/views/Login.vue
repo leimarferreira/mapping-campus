@@ -1,12 +1,12 @@
 <template>
-<form id="login-form" class="block" @submit="onSubmit">
+<form id="login-form" class="block" @submit.prevent>
     <img class="iconMedium"  src="../assets/user2.svg">
     <label class="form-label">Login</label>
     <input required class="form-control-md" id="email" v-model="login" type="text">
     <label class="form-label" for="">Senha</label>
     <input required class="form-control-md" id="password" v-model="password" type="text">
     <div class="buttons">
-        <button class="button">Voltar</button>
+        <button class="button" @click.prevent="$router.go(-1)">Voltar</button>
         <button class="button">Entrar</button>
     </div>
 </form>
@@ -19,13 +19,13 @@ export default{
     data() {
         return {
             login: "",
-            password: ""
+            password: "",
+            hasError: false,
+            warns: new Set()
         }
     },
-    methods: {
-        onSubmit() {
-            console.log("login: ",this.login, "senha:", this.password)
-        }
+    watch: {
+
     }
 }
 </script>
