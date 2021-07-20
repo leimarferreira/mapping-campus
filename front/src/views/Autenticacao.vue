@@ -1,8 +1,8 @@
 <template>
     <div class="block">
         <img src="@/assets/user2.svg" class="iconMedium" alt="">
-        <router-link class="btnlink" to="/cadastrar">Cadastro</router-link>
-        <router-link class="btnlink" to="/login">Login</router-link>
+        <button class="button btn-large" @click="$router.push('/cadastrar')">Cadastro</button>
+        <button class="button btn-large" @click="$router.push('/login')">Login</button>
         <back-button/>
     </div>
 </template>
@@ -16,6 +16,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 </style>

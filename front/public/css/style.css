@@ -51,8 +51,8 @@ body {
 }
 
 .topInlineForm {
-    display:inline-block;
-    align-items:inherit;
+    display: inline-block;
+    align-items: inherit;
     margin: auto;
     margin-block: 10px;
 }
@@ -155,13 +155,4 @@ input:focus {
     .block {
         width: 25%;
     }
-}
-
-#login-form {
-    margin-top: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }

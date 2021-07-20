@@ -1,5 +1,5 @@
 <template>
-<form id="login-form" class="block" @submit.prevent>
+<form class="block" @submit.prevent>
     <img class="iconMedium"  src="../assets/user2.svg">
     <label class="form-label">Login</label>
     <input required class="form-control-md" id="email" v-model="login" type="text">
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 export default{
     name: "Login",
     data() {
@@ -24,9 +23,6 @@ export default{
             warns: new Set()
         }
     },
-    watch: {
-
-    }
 }
 </script>
     
