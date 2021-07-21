@@ -24,13 +24,16 @@
             <label for="outros">Informações adicionais</label>
             <textarea name="outros" id="outros" cols="30" rows="10" v-model="informacoesAdicionais"></textarea>
 
-            <input type="submit" value="Adicionar">
+            <button class="button" @click.prevent="submitForm">Adicionar</button>
         </form>
     </div>
 </template>
 
 <script>
+import api from '@/api/api';
+
 export default {
+    name: "salas-de-aula",
     data() {
         return {
             aula: {
@@ -46,10 +49,25 @@ export default {
             informacoesAdicionais: ""
         }
     },
-    
+    methods: {
+        submitForm() {
+            const idSetor = this.$route.params.idSetor;
+            api.post("/places", {
+                tipo: "sala-de-aula",
+                idSetor: idSetor,
+                data: {
+                    aula: this.aula,
+                    professor: this.professor,
+                    informacoesAdicionais: this.informacoesAdicionais
+                }
+            });
+        }
+    }
 }
 </script>
 
-<style>
-
+<style scoped>
+* {
+    display: block;
+}
 </style>

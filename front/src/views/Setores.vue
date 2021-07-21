@@ -2,10 +2,10 @@
     <div class="main">
         <div class="topInlineForm">
             <div class="buttons">
-                <button class="button btn-lg">Sala de Aula</button>
-                <button class="button btn-lg">Coordenação</button> 
-                <button class="button btn-lg">Administração</button>
-                <button class="button btn-lg">Sala dos Professores</button>
+                <button class="button btn-lg" @click="$router.push('/setores/salas-de-aula')">Sala de Aula</button>
+                <button class="button btn-lg" @click="$router.push('/setores/coordenacoes')">Coordenação</button> 
+                <button class="button btn-lg" @click="$router.push('/setores/administracao')">Administração</button>
+                <button class="button btn-lg" @click="$router.push('/setores/sala-dos-professores')">Sala dos Professores</button>
             </div>
         </div>
     </div>

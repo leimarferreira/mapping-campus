@@ -5,6 +5,7 @@ import Cadastro from '@/views/Cadastro';
 import Login from '@/views/Login';
 import Setores from '@/views/Setores';
 import Locais from '@/views/Locais';
+import Local from '@/views/Local';
 
 const routes = [
     { path: '/', component: Index },
@@ -12,7 +13,8 @@ const routes = [
     { path: '/cadastrar', component: Cadastro },
     { path: '/login', component: Login },
     { path: '/setores', component: Setores },
-    { path: '/setores/:idSetor', component: Locais }
+    { path: '/setores/:idSetor', component: Locais },
+    { path: '/setores/:idSetor/add', component: Local }
 ];
 
 const router = createRouter({
