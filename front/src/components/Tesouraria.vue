@@ -50,10 +50,6 @@ export default {
     methods: {
         onSubmit() {
             console.log("Novo Responsavel: ",this.login, "email:", this.email)
-        },
-        goBack()
-        {
-            console.log("returning")
         }
     }
 }
