@@ -1,9 +1,9 @@
 <template>
-    <!-- TODO: Listar os locais aqui -->
+    <button class="button btn-lg" @click="redirectToForm">Adicionar novo local</button>
+    <div v-for="place in places" :key="place.id">
+        <button class="btn-lg button">{{ place.name }}</button>
+    </div>
     <div class="block">
-        <div class="topInlineForm">
-            <button class="button btn-lg" @click="redirectToForm">Adicionar novo local</button>
-        </div>
         <div class="pageFooter">
             <PageFooter/>
         </div>
@@ -11,11 +11,13 @@
 </template>
 
 <script>
-import PageFooter from '../components/PageFooter.vue'
+import api from "@/api/api";
+import PageFooter from '../components/PageFooter.vue';
+
 export default {
     data() {
         return {
-            locais: []
+            places: []
         }
     },
     components: {
@@ -25,10 +27,23 @@ export default {
         redirectToForm() {
             const idSetor = this.$route.params.idSetor;
             this.$router.push(`/setores/${idSetor}/add`);
+        },
+        async retrieveData() {
+            try {
+                this.places = (await api.get("/places", {
+                    params: {
+                        sectorId: this.$route.params.idSetor
+                    }
+                })).data;
+                console.log(this.places);
+            } catch (error) {
+                console.log(error);
+                // TODO: tratar esse erro
+            }
         }
     },
     created() {
-        //TODO: recuperar os locais do setor
+        this.retrieveData();
     },
 }
 </script>

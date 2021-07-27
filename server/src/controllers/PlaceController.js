@@ -1,24 +1,81 @@
-const express = require('express');
-const router = express.Router();
+const Place = require("../models/Place");
+const placeService = require("../services/PlaceService");
 
-router.get('/', (req, res, next) => {
+const get = async (req, res) => {
+    let places;
 
-});
+    if (req.query.sectorId) {
+        places = await placeService.findBySectorId(req.query.sectorId);
+    } else {
+        places = await placeService.getAll();
+    }
 
-router.get('/:id', (req, res, next) => {
+    const status = places && places.length > 0 ? 200 : 204;
 
-});
+    res.status(status).json(places);
+};
 
-router.post('/', (req, res, next) => {
+const getById = async (req, res) => {
+    const id = req.params.id;
 
-});
+    if (id < 1) {
+        res.status(400).end();
+    }
 
-router.put('/:id', (req, res, next) => {
+    const place = await placeService.findById(id);
+    const status = place ? 200 : 404;
+    res.status(status).json(place);
+};
 
-});
+const post = async (req, res) => {
+    const place = new Place(
+        req.body.name,
+        req.body.sectorId
+    );
 
-router.delete('/:id', (req, res, next) => {
+    try {
+        await placeService.save(place);
+        res.status(201).end();
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
 
-});
+const put = async (req, res) => {
+    const id = req.params.id;
 
-module.exports = router;
+    if (id < 1) {
+        res.status(400).end();
+    }
+
+    let place = new Place(
+        req.body.name,
+        req.body.sectorId
+    );
+
+    try {
+        await placeService.update(id, place);
+        res.status(200).end();
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+const remove = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await placeService.remove(id);
+        res.status(200).end();
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+module.exports = {
+    get,
+    getById,
+    post,
+    put,
+    remove
+};
