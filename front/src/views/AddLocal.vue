@@ -3,17 +3,25 @@
         <label for="name" class="form-label">Nome</label>
         <input type="text" name="name" id="name" class="form-control" v-model="name">
         <button class="button" @click="submit">Adicionar</button>
+
+        <div class="pageFooter">
+            <PageFooter/>
+        </div>
     </div>
 </template>
 
 <script>
 import api from "@/api/api";
+import PageFooter from "../components/PageFooter.vue"
 
 export default {
     data() {
         return {
             name: ""
         }
+    },
+    components: {
+        PageFooter
     },
     methods: {
         async submit() {
