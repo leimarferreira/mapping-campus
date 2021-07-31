@@ -4,25 +4,22 @@
             <PageHeader title="Coordenacao"/>
         </div>
 
-        <form class="block" @onsubmit.prevent>
+        <form class="block" @onsubmit="onsubmit">
             <h3>Coordenador </h3>
             <label class="form-label">Nome: </label>
-            <input required minlength="5" class="form-control-md" id="name" v-model="name" type="text">
+            <input minlength="5" required class="form-control-md" id="name" v-model="name" type="text">
             <label class="form-label">Email: </label>
-            <input required minlength="5" class="form-control-md" id="email" v-model="email" type="text">
-
+            <input minlength="5" required class="form-control-md" id="email" v-model="email" type="text">
             <h3>Vice Coordenador</h3>
             <label class="form-label">Nome: </label>
             <input required minlength="5" class="form-control-md" id="vice-name" v-model="viceName" type="text">
             <label class="form-label">Email: </label>
             <input required minlength="5" class="form-control-md" id="vice-email" v-model="viceEmail" type="text">
-
             <h3>Horarios</h3>
             <label class="form-label">Abertura: </label>
-            <input required class="form-control-md" id="time-opening" v-model="opening" type="time">
+            <input required minlength="5" class="form-control-md" id="time-opening" v-model="opening" type="time">
             <label class="form-label">Fechamento: </label>
-            <input required class="form-control-md" id="time-closing" v-model="closing" type="time">
-
+            <input required minlength="5" class="form-control-md" id="time-closing" v-model="closing" type="time">
             <h3>Outras Informacoes</h3>
             <label class="form-label">Informacoes adicionais: </label>
             <input class="form-control-md" id="info" v-model="info" type="text">
@@ -42,8 +39,6 @@
 import api from '@/api/api';
 import PageHeader from "../components/PageHeader.vue"
 import PageFooter from "../components/PageFooter.vue"
-
-
 export default {
     name: "Coordenacao",
     components: {
@@ -77,7 +72,7 @@ export default {
                         opening: this.opening,
                         closing: this.closing,
                         info: this.info
-                    },
+                    }
                 });   
         },
     }

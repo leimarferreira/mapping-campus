@@ -1,15 +1,20 @@
 <template>
     <div>
         <div class="pageHeader">
-            <PageHeader title="Recepcao"/>
+            <PageHeader title="Diretoria"/>
         </div>
 
         <form class="block" @submit="onSubmit">
-            <h3>Recepcionista</h3>
+            <h3>Diretor </h3>
             <label class="form-label">Nome: </label>
             <input required class="form-control-md" id="name" v-model="name" type="text">
             <label class="form-label">Email: </label>
             <input required class="form-control-md" id="email" v-model="email" type="text">
+            <h3>Vice-Diretor </h3>
+            <label class="form-label">Nome: </label>
+            <input required class="form-control-md" id="vice-name" v-model="viceName" type="text">
+            <label class="form-label">Email: </label>
+            <input required class="form-control-md" id="vice-email" v-model="viceEmail" type="text">
             <h3>Horarios</h3>
             <label class="form-label">Abertura: </label>
             <input required class="form-control-md" id="time-opening" v-model="opening" type="time">
@@ -30,10 +35,11 @@
 </template>
 
 <script>
-import PageHeader from "./PageHeader.vue"
-import PageFooter from "./PageFooter.vue"
+import api from '@/api/api'
+import PageHeader from "../components/PageHeader.vue"
+import PageFooter from "../components/PageFooter.vue"
 export default {
-    name: "Recepcao",
+    name: "Diretoria",
     components: {
         PageHeader,
         PageFooter,
@@ -42,14 +48,31 @@ export default {
         return {
             name: "",
             email: "",
+            viceName: "",
+            viceEmail: "",
             opening: "",
             closing: "",
             info: ""
         }
     },
     methods: {
-        onSubmit() {
-            console.log("Novo Responsavel: ",this.login, "email:", this.email)
+        onSubmit(e) {
+            e.preventDefault();
+
+            const idSector = this.$route.params.idSector;
+            api.post("/places", {
+                tipo: "Coordenacao",
+                idSetor: idSector,
+                data: {
+                    name: this.name,
+                    email: this.email,
+                    viceName: this.viceName,
+                    viceEmail: this.viceEmail,
+                    opening: this.opening,
+                    closing: this.closing,
+                    info: this.info
+                }
+            })
         },
     }
 }

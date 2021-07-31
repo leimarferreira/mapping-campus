@@ -1,15 +1,15 @@
 <template>
     <div>
         <div class="pageHeader">
-            <PageHeader title="Secretaria"/>
+            <PageHeader title="Tesouraria"/>
         </div>
 
         <form class="block" @submit="onSubmit">
-            <h3>Funcionario responsvel</h3>
-            <label class="form-label">Nome do Responsavel: </label>
-            <input required class="form-control-md" id="name" v-model="name" type="text">
+            <h3>Tesoureiro</h3>
+            <label class="form-label">Nome: </label>
+            <input required minlength="5" class="form-control-md" id="name" v-model="name" type="text">
             <label class="form-label">Email: </label>
-            <input required class="form-control-md" id="email" v-model="email" type="text">
+            <input required minlength="5" class="form-control-md" id="email" v-model="email" type="text">
             <h3>Horarios</h3>
             <label class="form-label">Abertura: </label>
             <input required class="form-control-md" id="time-opening" v-model="opening" type="time">
@@ -30,10 +30,11 @@
 </template>
 
 <script>
-import PageHeader from "./PageHeader.vue"
-import PageFooter from "./PageFooter.vue"
+import api from '@/api/api'
+import PageHeader from "../components/PageHeader.vue"
+import PageFooter from "../components/PageFooter.vue"
 export default {
-    name: "Secretaria",
+    name: "Tesouraria",
     components: {
         PageHeader,
         PageFooter,
@@ -48,9 +49,22 @@ export default {
         }
     },
     methods: {
-        onSubmit() {
-            console.log("Novo Responsavel: ",this.login, "email:", this.email)
-        },
+        onSubmit(e) {
+            e.preventDefault();
+
+            const idSector = this.$route.params.idSector;
+            api.post("/places", {
+                tipo: "Tesouraria",
+                idSetor: idSector,
+                data: {
+                    name: this.name,
+                    email: this.email,
+                    opening: this.opening,
+                    closing: this.closing,
+                    info: this.info
+                }
+            })
+        }
     }
 }
 </script>

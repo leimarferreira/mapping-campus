@@ -1,4 +1,5 @@
 <template>
+<div>
     <button class="button btn-lg" @click="redirectToForm">Adicionar novo local</button>
     <div v-for="place in places" :key="place.id">
         <button class="btn-lg button">{{ place.name }}</button>
@@ -8,6 +9,7 @@
             <PageFooter/>
         </div>
     </div>
+</div>
 </template>
 
 <script>
