@@ -1,27 +1,27 @@
-const placeDAO = require("../persistence/daos/PlaceDAO");
+const placeRepository = require("../persistence/repositories/PlaceRepository");
 
 const getAll = async () => {
-    return await placeDAO.getAll();
+    return await placeRepository.getAll();
 }
 
 const findById = async id => {
-    return await placeDAO.findById(id);
+    return await placeRepository.findById(id);
 }
 
 const findBySectorId = async id => {
-    return await placeDAO.findBySectorId(id);
+    return await placeRepository.findBySectorId(id);
 }
 
 const save = async place => {
-    await placeDAO.save(place);
+    return await placeRepository.save(place);
 }
 
 const update = async (id, place) => {
-    await placeDAO.update(id, place);
+    return await placeRepository.update(id, place);
 }
 
 const remove = async id => {
-    await placeDAO.remove(id);
+    return await placeRepository.remove(id);
 }
 
 module.exports = {
@@ -31,4 +31,4 @@ module.exports = {
     save,
     update,
     remove
-}
+};

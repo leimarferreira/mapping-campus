@@ -13,7 +13,7 @@
             <input required class="form-control-md" type="password" name="password-confirm" id="password-confirm" v-model="passwordConfirm">
             <div class="buttons">
                 <button class="button" type="button" @click.prevent="$router.go(-1)">Voltar</button>
-                <button id="submit" class="button" type="submit" :disabled="hasError">Cadastrar</button>
+                <button id="submit" class="button" type="submit" :disabled="hasError" @click="submitForm">Cadastrar</button>
             </div>
             <div v-for="warn in warns" :key="warn">
                 <p class="text-danger">{{ warn }}</p>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import api from "@/api/api";
+
 export default {
     data() {
         return {
@@ -32,6 +34,24 @@ export default {
             passwordConfirm: "",
             hasError: false,
             warns: new Set()
+        }
+    },
+    methods: {
+        async submitForm() {
+            const user = {
+                name: this.name,
+                number: this.number,
+                email: this.email,
+                password: this.password
+            };
+
+            try {
+                await api.post("/users", user);
+                this.$router.push("/login");
+            } catch (error) {
+                this.warns.push("Ocorreu um erro ao fazer o cadastro.");
+                this.hasError = true;
+            }
         }
     },
     watch: {

@@ -1,28 +1,36 @@
 <template>
-    <component :is="currentComponent"></component>
+    <button class="btn-lg button" @click="redirectToForm">Adicionar evento</button>
+    <div v-for="event in events" :key="event.id">
+        <button class="btn-lg button" @click="redirectToEvent(event.id)">{{ event.name }}</button>
+    </div>
 </template>
 
 <script>
-import AddSalasDeAula from '@/views/AddSalasDeAula';
-import AddCoordenacao from '@/views/AddCoordenacao'
+import api from "@/api/api";
 
 export default {
-    name: "local",
-    components: {
-        AddSalasDeAula,
-        AddCoordenacao
-    },
     data() {
         return {
-            currentComponent: ""
+            events: []
         }
     },
-    beforeRouteEnter(to, from, next) {
-        const idSetor = to.params.idSetor;
-
-        next(vm => {
-            vm.currentComponent = idSetor;
-        });
+    methods: {
+        async retrieveData() {
+            this.events = (await api.get("/events")).data;
+        },
+        redirectToForm() {
+            const idSetor = this.$route.params.idSetor;
+            const idLocal = this.$route.params.idLocal;
+            this.$router.push(`/setores/${idSetor}/local/${idLocal}/add`);
+        },
+        redirectToEvent(id) {
+            const idSetor = this.$route.params.idSetor;
+            const idLocal = this.$route.params.idLocal;
+            this.$router.push(`/setores/${idSetor}/local/${idLocal}/evento/${id}`);
+        }
+    },
+    created() {
+        this.retrieveData();
     }
 }
 </script>

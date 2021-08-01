@@ -28,14 +28,14 @@ const getById = async (req, res) => {
 };
 
 const post = async (req, res) => {
-    const place = new Place(
+    let place = new Place(
         req.body.name,
         req.body.sectorId
     );
 
     try {
-        await placeService.save(place);
-        res.status(201).end();
+        place = await placeService.save(place);
+        res.status(201).json(place);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -54,8 +54,8 @@ const put = async (req, res) => {
     );
 
     try {
-        await placeService.update(id, place);
-        res.status(200).end();
+        place = await placeService.update(id, place);
+        res.status(200).json(place);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -65,8 +65,8 @@ const remove = async (req, res) => {
     const id = req.params.id;
 
     try {
-        await placeService.remove(id);
-        res.status(200).end();
+        const place = await placeService.remove(id);
+        res.status(200).json(place);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

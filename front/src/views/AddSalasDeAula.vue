@@ -4,35 +4,37 @@
             <PageHeader tittle='Salas de Aula'/>
         </div>
 
-        <form class="block" onsubmit.prevent>
+        <div class="block">
             <h3>Aula</h3>
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control" v-model="aula.nome">
             <label class="form-label" for="disciplina">Disciplina</label>
             <input required minlength="5" class="form-control-md" name="disciplina" id="disciplina" v-model="aula.disciplina" type="text">
             <label class="form-label" for="codigo">Código da disciplina</label>
-            <input required minlength="5" class="form-control-md" name="codigo" id="codigo" v-model="aula.codigo" type="text">
+            <input required minlength="5" class="form-control-md" name="codigo" id="codigo" v-model="aula.codigoDisciplina" type="text">
             <label class="form-label" for="turma">Turma</label>
-            <input required minlength="5" class="form-control-md" name="turma" id="turma" v-model="aula.turma" type="text">
+            <input required class="form-control-md" name="turma" id="turma" v-model="aula.codigoTurma" type="text">
             <label class="form-label" for="curso">Curso</label>
             <input required minlength="5" class="form-control-md" name="curso" id="curso" v-model="aula.curso" type="text">
 
             <h3>Professor</h3>
             <label class="form-label" for="nome">Responsável</label>
-            <input  required minlength="5" class="form-control-md" name="nome" id="nome" v-model="professor.nome"  type="text">
+            <input required minlength="5" class="form-control-md" name="nome" id="nome" v-model="aula.nomeProfessor"  type="text">
             <label class="form-label" for="email">Email</label>
-            <input required  minlength="5" class="form-control-md" name="email" id="email" v-model="professor.email" type="email">
+            <input required  minlength="5" class="form-control-md" name="email" id="email" v-model="aula.emailProfessor" type="email">
 
             <h3>Outras informações</h3>
             <label class="form-label" for="outros">Informações adicionais</label>
-            <textarea class="form-control-md" name="outros" id="outros" cols="30" rows="10" v-model="informacoesAdicionais"></textarea>
+            <textarea class="form-control-md" name="outros" id="outros" cols="30" rows="10" v-model="aula.informacoesAdicionais"></textarea>
 
             <div class="buttons">
-                <button class="button">Adicionar</button>
+                <button class="button" @click.prevent="submitForm">Adicionar</button>
             </div>
 
             <div class="pageFooter">
                 <PageFooter/>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
@@ -42,7 +44,7 @@ import PageHeader from "../components/PageHeader.vue"
 import PageFooter from "../components/PageFooter.vue"
 
 export default {
-    name: "AddSalaDeAula",
+    name: "salas-de-aula",
     components: {
         PageHeader,
         PageFooter,
@@ -50,31 +52,51 @@ export default {
     data() {
         return {
             aula: {
-                disciplina: "",
-                codigo: "",
-                turma: "",
-                curso: "",
-            },
-            professor: {
+                tipo: "aula",
                 nome: "",
-                email: "",
-            },
-            informacoesAdicionais: ""
+                disciplina: "",
+                codigoDisciplina: "",
+                curso: "",
+                codigoTurma: "",
+                nomeProfessor: "",
+                emailProfessor: "",
+                informacoesAdicionais: ""
+            }
         }
     },
     methods: {
         submitForm() {
-            const idSetor = this.$route.params.idSetor;
-            api.post("/places", {
-                tipo: "AddSalaDeAula",
-                idSetor: idSetor,
-                data: {
-                    aula: this.aula,
-                    professor: this.professor,
-                    informacoesAdicionais: this.informacoesAdicionais
-                }
+            const idLocal = this.$route.params.idLocal;
+            api.post("/events", {
+                placeId: idLocal,
+                type: this.aula.tipo,
+                name: this.aula.nome,
+                subject: this.aula.disciplina,
+                subjectCode: this.aula.codigoDisciplina,
+                course: this.aula.curso,
+                classCode: this.aula.codigoTurma,
+                professorName: this.aula.nomeProfessor,
+                professorEmail: this.aula.emailProfessor,
+                additionalInfo: this.informacoesAdicionais
             });
+        },
+        async retriveData() {
+            const idEvento = this.$route.params.idEvento;
+            if (idEvento) {
+                const event = (await api.get(`/events/${idEvento}`)).data;
+                this.aula.nome = event.name;
+                this.aula.disciplina = event.subject;
+                this.aula.codigoDisciplina = event.subjectCode;
+                this.aula.curso = event.course;
+                this.aula.codigoTurma = event.classCode;
+                this.aula.nomeProfessor = event.professorName;
+                this.aula.emailProfessor = event.professorEmail;
+                this.aula.informacoesAdicionais = event.additionalInfo;
+            }
         }
+    },
+    created() {
+        this.retriveData();
     }
 }
 </script>

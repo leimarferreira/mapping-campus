@@ -1,9 +1,9 @@
 <template>
     <div class="block">
-        <form @submit="submit">
+        <form @submit.prevent>
             <label for="name" class="form-label">Nome</label>
             <input type="text" required minlength="5" name="name" id="name" class="form-control" v-model="name">
-            <button class="button">Adicionar</button>
+            <button class="button" @click.prevent="submit">Adicionar</button>
         </form>
 
         <div class="pageFooter">
@@ -37,7 +37,6 @@ export default {
             try {
                 await api.post("/places", place);
             } catch (error) {
-                console.log(error);
                 // TODO: tratar esse erro
             }
 

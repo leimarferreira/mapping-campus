@@ -2,7 +2,7 @@
 <div>
     <button class="button btn-lg" @click="redirectToForm">Adicionar novo local</button>
     <div v-for="place in places" :key="place.id">
-        <button class="btn-lg button">{{ place.name }}</button>
+        <button class="btn-lg button" @click="redirectToPlace(place.id)">{{ place.name }}</button>
     </div>
     <div class="block">
         <div class="pageFooter">
@@ -30,6 +30,10 @@ export default {
             const idSetor = this.$route.params.idSetor;
             this.$router.push(`/setores/${idSetor}/add`);
         },
+        redirectToPlace(id) {
+            const idSetor = this.$route.params.idSetor;
+            this.$router.push(`/setores/${idSetor}/local/${id}`);
+        },
         async retrieveData() {
             try {
                 this.places = (await api.get("/places", {
@@ -37,9 +41,8 @@ export default {
                         sectorId: this.$route.params.idSetor
                     }
                 })).data;
-                console.log(this.places);
             } catch (error) {
-                console.log(error);
+                console.dir(error);
                 // TODO: tratar esse erro
             }
         }
