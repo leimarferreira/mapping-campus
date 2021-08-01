@@ -1,11 +1,13 @@
 <template>
     <div class="block">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" name="name" id="name" class="form-control" v-model="name">
-        <button class="button" @click="submit">Adicionar</button>
+        <form @submit="submit">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" required minlength="5" name="name" id="name" class="form-control" v-model="name">
+            <button class="button">Adicionar</button>
+        </form>
 
         <div class="pageFooter">
-            <PageFooter/>
+            <button class="button" @click="$router.go(-2)">cancelar</button>
         </div>
     </div>
 </template>

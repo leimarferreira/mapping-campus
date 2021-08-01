@@ -17,7 +17,7 @@
 
             <h3>Professor</h3>
             <label class="form-label" for="nome">Responsável</label>
-            <input required minlength="5" class="form-control-md" name="nome" id="nome" v-model="professor.nome"  type="text">
+            <input  required minlength="5" class="form-control-md" name="nome" id="nome" v-model="professor.nome"  type="text">
             <label class="form-label" for="email">Email</label>
             <input required  minlength="5" class="form-control-md" name="email" id="email" v-model="professor.email" type="email">
 
@@ -42,7 +42,7 @@ import PageHeader from "../components/PageHeader.vue"
 import PageFooter from "../components/PageFooter.vue"
 
 export default {
-    name: "SalasDeAula",
+    name: "AddSalaDeAula",
     components: {
         PageHeader,
         PageFooter,
@@ -66,7 +66,7 @@ export default {
         submitForm() {
             const idSetor = this.$route.params.idSetor;
             api.post("/places", {
-                tipo: "SalaDeAula",
+                tipo: "AddSalaDeAula",
                 idSetor: idSetor,
                 data: {
                     aula: this.aula,

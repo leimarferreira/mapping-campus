@@ -39,7 +39,7 @@ import api from '@/api/api'
 import PageHeader from "../components/PageHeader.vue"
 import PageFooter from "../components/PageFooter.vue"
 export default {
-    name: "Diretoria",
+    name: "AddDiretoria",
     components: {
         PageHeader,
         PageFooter,
@@ -61,7 +61,7 @@ export default {
 
             const idSector = this.$route.params.idSector;
             api.post("/places", {
-                tipo: "Coordenacao",
+                tipo: "AddDiretoria",
                 idSetor: idSector,
                 data: {
                     name: this.name,

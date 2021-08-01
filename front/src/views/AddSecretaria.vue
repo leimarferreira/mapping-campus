@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="pageHeader">
-            <PageHeader title="Tesouraria"/>
+            <PageHeader title="Secretaria"/>
         </div>
 
         <form class="block" @submit="onSubmit">
-            <h3>Tesoureiro</h3>
-            <label class="form-label">Nome: </label>
+            <h3>Funcionario responsvel</h3>
+            <label class="form-label">Nome do Responsavel: </label>
             <input required minlength="5" class="form-control-md" id="name" v-model="name" type="text">
             <label class="form-label">Email: </label>
             <input required minlength="5" class="form-control-md" id="email" v-model="email" type="text">
@@ -34,7 +34,7 @@ import api from '@/api/api'
 import PageHeader from "../components/PageHeader.vue"
 import PageFooter from "../components/PageFooter.vue"
 export default {
-    name: "Tesouraria",
+    name: "AddSecretaria",
     components: {
         PageHeader,
         PageFooter,
@@ -52,9 +52,9 @@ export default {
         onSubmit(e) {
             e.preventDefault();
 
-            const idSector = this.$route.params.idSector;
+            const idSector = this.$route.params.idSector
             api.post("/places", {
-                tipo: "Tesouraria",
+                tipo: "AddSecretaria",
                 idSetor: idSector,
                 data: {
                     name: this.name,
@@ -64,7 +64,7 @@ export default {
                     info: this.info
                 }
             })
-        }
+},
     }
 }
 </script>

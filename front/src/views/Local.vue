@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import SalasDeAula from '@/views/SalasDeAula';
-import Coordenacao from '@/views/Coordenacao'
+import AddSalasDeAula from '@/views/AddSalasDeAula';
+import AddCoordenacao from '@/views/AddCoordenacao'
 
 export default {
     name: "local",
     components: {
-        SalasDeAula,
-        Coordenacao
+        AddSalasDeAula,
+        AddCoordenacao
     },
     data() {
         return {
