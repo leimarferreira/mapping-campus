@@ -4,7 +4,7 @@
             <PageHeader title="Coordenacao"/>
         </div>
 
-        <form class="block" @onsubmit="onsubmit">
+        <form class="block" @submit.prevent="onsubmit">
             <h3>Coordenador </h3>
             <label class="form-label">Nome: </label>
             <input minlength="5" required class="form-control-md" id="name" v-model="name" type="text">
@@ -57,14 +57,13 @@ export default {
         }
     },
     methods: {
-        submitForm(e) {
-            e.preventDefault();
-
+        onsubmit() {
+            
             const idSetor = this.$route.params.idSetor;
-                api.post("/places", {
-                    tipo: "AddCoordenacao",
-                    idSetor: idSetor,
-                    data: {
+                api.post("/events", {
+                    
+                    type: "coordenacao",
+                    
                         name: this.name,
                         email: this.email,
                         viceName: this.viceName,
@@ -72,7 +71,7 @@ export default {
                         opening: this.opening,
                         closing: this.closing,
                         info: this.info
-                    }
+                    
                 });   
         },
     }

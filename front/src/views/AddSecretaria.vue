@@ -4,7 +4,7 @@
             <PageHeader title="Secretaria"/>
         </div>
 
-        <form class="block" @submit="onSubmit">
+        <form class="block" @submit.prevent="onsubmit">
             <h3>Funcionario responsvel</h3>
             <label class="form-label">Nome do Responsavel: </label>
             <input required minlength="5" class="form-control-md" id="name" v-model="name" type="text">
@@ -49,20 +49,18 @@ export default {
         }
     },
     methods: {
-        onSubmit(e) {
-            e.preventDefault();
-
+        onsubmit() {
+           
             const idSector = this.$route.params.idSector
-            api.post("/places", {
-                tipo: "AddSecretaria",
-                idSetor: idSector,
-                data: {
+            api.post("/events", {
+                type: "secretaria",
+                
                     name: this.name,
                     email: this.email,
                     opening: this.opening,
                     closing: this.closing,
                     info: this.info
-                }
+                
             })
 },
     }

@@ -4,7 +4,7 @@
             <PageHeader title="Diretoria"/>
         </div>
 
-        <form class="block" @submit="onSubmit">
+        <form class="block" @submit.prevent="onsubmit">
             <h3>Diretor </h3>
             <label class="form-label">Nome: </label>
             <input required class="form-control-md" id="name" v-model="name" type="text">
@@ -56,14 +56,12 @@ export default {
         }
     },
     methods: {
-        onSubmit(e) {
-            e.preventDefault();
-
+        onsubmit() {
+            
             const idSector = this.$route.params.idSector;
-            api.post("/places", {
-                tipo: "AddDiretoria",
-                idSetor: idSector,
-                data: {
+            api.post("/events", {
+                type: "diretoria",
+                
                     name: this.name,
                     email: this.email,
                     viceName: this.viceName,
@@ -71,7 +69,7 @@ export default {
                     opening: this.opening,
                     closing: this.closing,
                     info: this.info
-                }
+               
             })
         },
     }

@@ -4,7 +4,7 @@
             <PageHeader title="Tesouraria"/>
         </div>
 
-        <form class="block" @submit="onSubmit">
+        <form class="block" @submit.prevent="onsubmit">
             <h3>Tesoureiro</h3>
             <label class="form-label">Nome: </label>
             <input required minlength="5" class="form-control-md" id="name" v-model="name" type="text">
@@ -49,20 +49,18 @@ export default {
         }
     },
     methods: {
-        onSubmit(e) {
-            e.preventDefault();
-
+        onsubmit() {
+          
             const idSector = this.$route.params.idSector;
-            api.post("/places", {
-                tipo: "AddTesouraria",
-                idSetor: idSector,
-                data: {
+            api.post("/events", {
+                type: "tesouraria",
+                
                     name: this.name,
                     email: this.email,
                     opening: this.opening,
                     closing: this.closing,
                     info: this.info
-                }
+                
             })
         }
     }

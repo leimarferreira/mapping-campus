@@ -37,7 +37,7 @@ body {
 
 .headerTitle {
     color: #388c91;
-    margin-left: 200px;
+    margin-left: 100px;
 }
 
 .largeTitle {
@@ -92,7 +92,7 @@ input:focus {
     color: #388c91;
     border: 1px solid #388c91 ;
     border-radius: 50px;
-    min-width: 100px;
+    min-width: 110px;
     min-height: 40px;
 }
 
