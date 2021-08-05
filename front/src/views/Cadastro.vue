@@ -1,15 +1,15 @@
 <template>
     <form id="form" class="block" method="post" @submit.prevent>
             <img class="iconMedium" src="resources\icons\user2.svg" alt="">
-            <label class="form-label" for="name">Nome</label>
+            <label class="form-label" for="name">Nome:</label>
             <input required class="form-control-md" type="text" name="name" id="name" v-model="name">
-            <label class="form-label" for="email">Email</label>
+            <label class="form-label" for="email">Email:</label>
             <input required class="form-control-md" type="email" name="email" id="email" v-model="email">
-            <label class="form-label" for="number">Número do servidor</label>
+            <label class="form-label" for="number">Número do servidor:</label>
             <input required class="form-control-md" type="number" name="number" id="number" v-model="number">
-            <label class="form-label" for="password">Senha</label>
+            <label class="form-label" for="password">Senha:</label>
             <input required class="form-control-md" type="password" name="password" id="password" v-model="password">
-            <label class="form-label" for="password-confirm">Confirmar senha</label>
+            <label class="form-label" for="password-confirm">Confirmar senha:</label>
             <input required class="form-control-md" type="password" name="password-confirm" id="password-confirm" v-model="passwordConfirm">
             <div class="buttons">
                 <button class="button" type="button" @click.prevent="$router.go(-1)">Voltar</button>

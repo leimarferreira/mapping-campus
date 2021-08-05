@@ -1,10 +1,21 @@
 const Event = require("../models/Event");
 const eventService = require("../services/EventService");
 const classService = require("../services/ClassService");
+const coordinationService = require("../services/CoordinationService");
+const frontdeskService = require("../services/FrontDeskService");
+const schoolboardService = require("../services/SchoolBoardService");
+const treasuryService = require("../services/TreasuryService");
+const secretaryService = require("../services/SecretaryService");
 
 const eventTypeServices = {
-    "aula": classService
-};
+    "aula": classService,
+    "coordenacao": coordinationService, 
+    "diretoria":  schoolboardService, 
+    "recepcao": frontdeskService,
+    "tesouraria": treasuryService,
+    "secretaria": secretaryService
+}; 
+
 
 const get = async (req, res) => {
     let events;
