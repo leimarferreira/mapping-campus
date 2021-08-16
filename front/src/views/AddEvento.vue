@@ -3,14 +3,16 @@
 </template>
 
 <script>
-import SalasDeAula from '@/views/AddSalasDeAula';
+import SalasDeAula from '@/views/AddSalasDeAula'
 import Coordenacao from '@/views/AddCoordenacao'
+import SalaDosProfessores from '@/views/AddSalaDosProfessores'
 
 export default {
     name: "add-evento",
     components: {
         SalasDeAula,
-        Coordenacao
+        Coordenacao,
+        SalaDosProfessores
     },
     data() {
         return {

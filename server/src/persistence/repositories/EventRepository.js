@@ -1,8 +1,10 @@
 const pool = require("../dbs/db");
 const classRepository = require("./ClassRepository");
+const professorRoomRepository = require("./ProfessorRoomRepository");
 
 const eventTypes = {
-    "class": classRepository
+    "class": classRepository,
+    "professorRoom": professorRoomRepository
 };
 
 const getAll = async () => {

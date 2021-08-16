@@ -6,6 +6,7 @@ const frontdeskService = require("../services/FrontDeskService");
 const schoolboardService = require("../services/SchoolBoardService");
 const treasuryService = require("../services/TreasuryService");
 const secretaryService = require("../services/SecretaryService");
+const professorRoomService = require("../services/ProfessorRoomService");
 
 const eventTypeServices = {
     "aula": classService,
@@ -13,7 +14,8 @@ const eventTypeServices = {
     "diretoria":  schoolboardService, 
     "recepcao": frontdeskService,
     "tesouraria": treasuryService,
-    "secretaria": secretaryService
+    "secretaria": secretaryService,
+    "salaProfessor": professorRoomService
 }; 
 
 
