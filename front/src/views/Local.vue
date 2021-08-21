@@ -1,7 +1,9 @@
 <template>
-    <button class="btn-lg button" @click="redirectToForm">Adicionar evento</button>
-    <div v-for="event in events" :key="event.id">
-        <button class="btn-lg button" @click="redirectToEvent(event.id)">{{ event.name }}</button>
+    <div>
+        <button class="btn-lg button" @click="redirectToForm">Adicionar evento</button>
+        <div v-for="event in events" :key="event.id">
+            <button class="btn-lg button" @click="redirectToEvent(event.id)">{{ event.name }}</button>
+        </div>
     </div>
 </template>
 
