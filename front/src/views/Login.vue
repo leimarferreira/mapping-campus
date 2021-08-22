@@ -1,9 +1,10 @@
 <template>
-<form class="block" @submit.prevent>
+<div class="block-container">
+<form class="block-center"  style="padding: 6%;" @submit.prevent>
     <img class="iconMedium"  src="../assets/user2.svg">
-    <label class="form-label">Login</label>
+    <label class="form-label">Login:</label>
     <input required class="form-control-md" id="email" v-model="email" type="text">
-    <label class="form-label" for="">Senha</label>
+    <label class="form-label" for="">Senha:</label>
     <input required class="form-control-md" id="password" v-model="password" type="password">
     <div class="buttons">
         <button class="button" @click.prevent="$router.go(-1)">Voltar</button>
@@ -13,6 +14,7 @@
         <p class="text-danger">{{ warn }}</p>
     </div>
 </form>
+</div>
 </template>
 
 <script>

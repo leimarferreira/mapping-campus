@@ -4,11 +4,12 @@
     <div v-for="place in places" :key="place.id">
         <button class="btn-lg button" @click="redirectToPlace(place.id)">{{ place.name }}</button>
     </div>
-    <div class="block">
+    
         <div class="pageFooter">
+    
             <PageFooter/>
         </div>
-    </div>
+
 </div>
 </template>
 
