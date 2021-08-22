@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const eventController = require("../controllers/EventController");
+const requireLogin = require("../middleware/requireLogin");
 
 router.get("/", eventController.get);
 router.get("/:id(\\d+)", eventController.getById);
-router.post("/", eventController.post);
-router.put("/:id(\\d+)", eventController.put);
-router.delete("/:id(\\d+)", eventController.remove);
+router.post("/", requireLogin, eventController.post);
+router.put("/:id(\\d+)", requireLogin, eventController.put);
+router.delete("/:id(\\d+)", requireLogin, eventController.remove);
 
 module.exports = router;

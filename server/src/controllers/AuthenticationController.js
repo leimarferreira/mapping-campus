@@ -6,12 +6,24 @@ const authenticate = async (req, res) => {
 
     try {
         const user = await authenticationService.validateCredentials(email, password);
-        res.json(user);
+
+        if (user) {
+            req.session.user = user;
+            res.status(200).end();
+        } else {
+            res.status(400).end();
+        }
     } catch (error) {
-        res.json(null);
+        res.status(400).end();
     }
 }
 
+const logout = (req, res) => {
+    req?.session?.destroy();
+    res.status(200).end();
+}
+
 module.exports = {
-    authenticate
+    authenticate,
+    logout
 };

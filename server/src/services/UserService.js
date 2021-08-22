@@ -16,9 +16,19 @@ const save = async user => {
     return await userRepository.save(user);
 };
 
+const update = async (id, record) => {
+    return await userRepository.update(id, record);
+};
+
+const remove = async id => {
+    return await userRepository.remove(id);
+};
+
 module.exports = {
     getAll,
     findById,
     findByEmail,
-    save
+    save,
+    update,
+    remove
 };
