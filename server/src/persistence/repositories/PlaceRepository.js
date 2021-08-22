@@ -9,6 +9,15 @@ const getAll = async () => {
     }
 };
 
+const getLimited = async (limit) => {
+    try {
+        const res = await pool.query(`SELECT * FROM places LIMIT ${limit}`)
+        return res.rows;
+    } catch (error) {
+        return error;
+    }
+}
+
 const findById = async (id) => {
     try {
         const place = await Place.findOne({

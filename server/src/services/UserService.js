@@ -4,6 +4,10 @@ const getAll = async () => {
     return await userRepository.getAll();
 };
 
+const getLimited = async limit => {
+    return await userRepository.getLimited(limit);
+}
+
 const findById = async id => {
     return await userRepository.findById(id);
 };
