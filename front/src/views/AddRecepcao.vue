@@ -49,12 +49,10 @@ export default {
         }
     },
     methods: {
-        onsubmit() {
-           
+        submit() {
             const idSector = this.$route.params.idSector;
             api.post("/events", {
                 type: "recepcao",
-               
                     name: this.name,
                     email: this.email,
                     opening: this.opening,

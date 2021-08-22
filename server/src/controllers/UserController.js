@@ -10,6 +10,12 @@ const get = async (req, res) => {
     }
 };
 
+const getLimited = async (req, res) => {
+    let users;
+    const limit = req.params.limit;
+        users = await userService.getLimited(limit);
+}
+
 const getById = async (req, res) => {
     try {
         const user = await userService.findById(req.params.id);

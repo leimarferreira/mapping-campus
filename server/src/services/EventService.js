@@ -4,6 +4,10 @@ const getAll = async () => {
     return await eventRepository.getAll();
 };
 
+const getLimited = async limit => {
+    return await eventRepository.getLimited(limit);
+}
+
 const findById = async id => {
     return await eventRepository.findById(id);
 };

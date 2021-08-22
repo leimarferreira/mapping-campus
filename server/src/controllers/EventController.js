@@ -31,6 +31,17 @@ const get = async (req, res) => {
     res.status(status).json(events);
 };
 
+const getLimited = async (req, res) => {
+    let events;
+    const limit = req.params.limit;
+
+    if (req.query.sectorId) {
+        events = await eventService.findByPlaceId(req.query.placeId);
+    } else {
+        events = await eventService.getLimited(limit);
+    }
+}
+
 const getById = async (req, res) => {
     let id = req.params.id;
 
