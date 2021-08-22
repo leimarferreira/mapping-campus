@@ -63,19 +63,20 @@ export default {
             api.post("/events", {
                 placeId: idLocal,
                 type: this.salaProfessor.tipo,
-                name: this.salaProfessor.nome,
+                name: this.aula.nome,
+                professorName: this.salaProfessor.nome,
                 professorEmail: this.salaProfessor.emailProfessor,
                 academicArea: this.salaProfessor.areaAcademica,
                 arrivalTime: this.salaProfessor.horaChegada,
                 departureTime: this.salaProfessor.horaSaida,
-                additionalInfo: this.salaProfessor.info
+                additionalInfo: this.info
             });
         },
         async retriveData() {
             const idEvento = this.$route.params.idEvento;
             if (idEvento) {
                 const event = (await api.get(`/events/${idEvento}`)).data;
-                this.salaProfessor.nome = event.professorName;
+                this.salaProfessor.nome = event.name;
                 this.salaProfessor.emailProfessor = event.professorEmail;
                 this.salaProfessor.areaAcademica = event.academicArea;
                 this.salaProfessor.horaChegada = event.arrivalTime;

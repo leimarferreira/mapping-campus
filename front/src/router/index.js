@@ -12,6 +12,14 @@ import AddEvento from '@/views/AddEvento';
 const routes = [
     { path: '/', component: Index },
     { path: '/autenticacao', component: Autenticacao },
+    { path: '/cadastrar', component: Cadastro },
+    { path: '/login', component: Login },
+    { path: '/setores', component: Setores },
+    { path: '/setores/:idSetor', component: Locais },
+    { path: '/setores/:idSetor/add', component: AddLocal },
+    { path: '/setores/:idSetor/local/:idLocal', component: Local },
+    { path: '/setores/:idSetor/local/:idLocal/add', component: AddEvento },
+    { path: '/setores/:idSetor/local/:idLocal/evento/:idEvento', component: AddEvento }
 ];
 
 const router = createRouter({
