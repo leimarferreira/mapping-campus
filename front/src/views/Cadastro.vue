@@ -1,5 +1,6 @@
 <template>
-    <form id="form" class="block" method="post" @submit.prevent>
+<div class="block-container"> 
+    <form id="form" class="block-center"  style="padding: 3%;" method="post" @submit.prevent>
             <img class="iconMedium" src="resources\icons\user2.svg" alt="">
             <label class="form-label" for="name">Nome:</label>
             <input required class="form-control-md" type="text" name="name" id="name" v-model="name">
@@ -19,6 +20,7 @@
                 <p class="text-danger">{{ warn }}</p>
             </div>
         </form>
+</div>
 </template>
 
 <script>

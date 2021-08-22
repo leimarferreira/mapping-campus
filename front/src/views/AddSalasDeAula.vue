@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="pageHeader">
-            <PageHeader tittle='Salas de Aula'/>
+            <PageHeader title='Salas de Aula'/>
         </div>
 
         <div class="block">
