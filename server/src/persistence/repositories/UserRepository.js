@@ -1,4 +1,3 @@
-const pool = require("../dbs/db");
 const { User } = require("../../models");
 
 const getAll = async () => {

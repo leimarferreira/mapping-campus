@@ -10,9 +10,9 @@ const requireLogin = async (req, res, next) => {
 
             if (user) {
                 next();
-            } else {
-                res.status(403).end();
             }
+        } else {
+            res.status(403).end();
         }
     } catch (error) {
         res.status(400).end();

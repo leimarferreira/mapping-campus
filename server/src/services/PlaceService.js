@@ -12,12 +12,12 @@ const findBySectorId = async id => {
     return await placeRepository.findBySectorId(id);
 }
 
-const save = async place => {
-    return await placeRepository.save(place);
+const save = async record => {
+    return await placeRepository.save(record);
 }
 
-const update = async (id, place) => {
-    return await placeRepository.update(id, place);
+const update = async (id, record) => {
+    return await placeRepository.update(id, record);
 }
 
 const remove = async id => {

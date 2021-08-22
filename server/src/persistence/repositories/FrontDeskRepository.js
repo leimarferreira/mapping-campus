@@ -1,22 +1,84 @@
-const pool = require("../dbs/db");
+const { FrontDesk } = require("../../models/");
+
+const getAll = async () => {
+    try {
+        const frontDeskInfos = await FrontDesk.findAll();
+        return frontDeskInfos;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const findById = async id => {
+    try {
+        const frontDeskInfo = FrontDesk.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        return frontDeskInfo;
+    } catch (error) {
+        throw error;
+    }
+};
 
 const save = async event => {
     try {
+        const frontDesk = FrontDesk.build({
+            responsibleName: event.responsibleName,
+            responsibleEmail: event.responsibleEmail,
+            openingTime: event.openingTime,
+            closingTime: event.closingTime,
+            additionalInfo: event.additionalInfo
+        });
 
-        const res = await pool.query(
-            `INSERT INTO frontdesk ("name", "email", "opening", "closing", "info")
-            VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-            [
-                event.name, event.viceEmail, event.opening, event.closing, event.info
-            ]
-        );
-
-        return res.rows[0];
+        await frontDesk.save();
+        return frontDesk;
     } catch (error) {
-        return error;
+        throw error;
+    }
+};
+
+const update = async (id, event) => {
+    try {
+        const frontDeskInfo = await FrontDesk.update({
+            responsibleName: event.responsibleName,
+            responsibleEmail: event.responsibleEmail,
+            openingTime: event.openingTime,
+            closingTime: event.closingTime,
+            additionalInfo: event.additionalInfo
+        }, {
+            where: {
+                id: id
+            },
+            returning: true
+        });
+
+        return frontDeskInfo[1][0];
+    } catch (error) {
+        throw error;
+    }
+}
+
+const remove = async id => {
+    try {
+        const frontDeskInfo = await FrontDesk.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        return frontDeskInfo;
+    } catch (error) {
+        throw error;
     }
 };
 
 module.exports = {
-    save
+    getAll,
+    findById,
+    save,
+    update,
+    remove
 };

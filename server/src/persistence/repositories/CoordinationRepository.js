@@ -1,23 +1,89 @@
-const pool = require("../dbs/db");
+const { Coordination } = require("../../models/");
+
+const getAll = async () => {
+    try {
+        const coordinations = await Coordination.findAll();
+        return coordinations;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const findById = async id => {
+    try {
+        const coordination = Coordination.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        return coordination;
+    } catch (error) {
+        throw error;
+    }
+}
 
 const save = async event => {
     try {
-        //tabela de coordenação
-        const res = await pool.query(
-            `INSERT INTO coordination ("name", "email", "viceName", "viceEmail", "opening", "closing", "info")
-            VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-            [
-                event.name, event.email, event.viceName, event.viceEmail,
-                event.opening, event.closing, event.info
-            ]
-        );
+        const coordination = Coordination.build({
+            coordinatorName: event.coordinatorName,
+            coordinatorEmail: event.coordinatorEmail,
+            viceCoordinatorName: event.viceCoordinatorName,
+            viceCoordinatorEmail: event.viceCoordinatorEmail,
+            openingTime: event.openingTime,
+            closingTime: event.closingTime,
+            additionalInfo: event.additionalInfo
+        });
 
-        return res.rows[0];
+        await coordination.save();
+
+        return coordination;
     } catch (error) {
-        return error;
+        throw error;
+    }
+};
+
+const update = async (id, event) => {
+    try {
+        const coordination = await Coordination.update({
+            coordinatorName: event.coordinatorName,
+            coordinatorEmail: event.coordinatorEmail,
+            viceCoordinatorName: event.viceCoordinatorName,
+            viceCoordinatorEmail: event.viceCoordinatorEmail,
+            openingTime: event.openingTime,
+            closingTime: event.closingTime,
+            additionalInfo: event.additionalInfo
+        }, {
+            where: {
+                id: id
+            },
+            returning: true
+        });
+
+        return coordination[1][0];
+    } catch (error) {
+        throw error;
+    }
+}
+
+const remove = async id => {
+    try {
+        const coordination = await Coordination.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        return coordination;
+    } catch (error) {
+        throw error;
     }
 };
 
 module.exports = {
-    save
+    getAll,
+    findById,
+    save,
+    update,
+    remove
 };

@@ -2,39 +2,44 @@ const Place = require("../models/Place");
 const placeService = require("../services/PlaceService");
 
 const get = async (req, res) => {
-    let places;
+    try {
+        let places;
 
-    if (req.query.sectorId) {
-        places = await placeService.findBySectorId(req.query.sectorId);
-    } else {
-        places = await placeService.getAll();
+        if (req.query.sectorId) {
+            places = await placeService.findBySectorId(req.query.sectorId);
+        } else {
+            places = await placeService.getAll();
+        }
+
+        const status = places && places.length > 0 ? 200 : 204;
+
+        res.status(status).json(places);
+    } catch (error) {
+        res.status(500).end();
     }
 
-    const status = places && places.length > 0 ? 200 : 204;
-
-    res.status(status).json(places);
 };
 
 const getById = async (req, res) => {
-    const id = req.params.id;
+    try {
+        const id = req.params.id;
 
-    if (id < 1) {
-        res.status(400).end();
+        const place = await placeService.findById(id);
+
+        if (place) {
+            res.status(200).json(place);
+        } else {
+            res.status(404).end();
+        }
+    } catch (error) {
+        res.status(500).end();
     }
 
-    const place = await placeService.findById(id);
-    const status = place ? 200 : 404;
-    res.status(status).json(place);
 };
 
 const post = async (req, res) => {
-    let place = new Place(
-        req.body.name,
-        req.body.sectorId
-    );
-
     try {
-        place = await placeService.save(place);
+        const place = await placeService.save(req.body);
         res.status(201).json(place);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -44,18 +49,14 @@ const post = async (req, res) => {
 const put = async (req, res) => {
     const id = req.params.id;
 
-    if (id < 1) {
-        res.status(400).end();
-    }
-
-    let place = new Place(
-        req.body.name,
-        req.body.sectorId
-    );
-
     try {
-        place = await placeService.update(id, place);
-        res.status(200).json(place);
+        const place = await placeService.update(id, req.body);
+
+        if (place) {
+            res.status(200).json(place);
+        } else {
+            res.status(404).end();
+        }
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -66,7 +67,12 @@ const remove = async (req, res) => {
 
     try {
         const place = await placeService.remove(id);
-        res.status(200).json(place);
+
+        if (place) {
+            res.status(200).end();
+        } else {
+            res.status(404).end();
+        }
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

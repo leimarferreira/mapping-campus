@@ -1,58 +1,86 @@
-const pool = require("../dbs/db");
+const { Place } = require("../../models/");
 
 const getAll = async () => {
     try {
-        const res = await pool.query("SELECT * FROM places");
-        return res.rows;
+        const places = await Place.findAll();
+        return places;
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
 const findById = async (id) => {
     try {
-        const res = await pool.query("SELECT * FROM places WHERE id = $1", [id]);
-        return res.rows[0];
+        const place = await Place.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        return place;
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
 const findBySectorId = async (id) => {
     try {
-        const res = await pool.query('SELECT * FROM places WHERE "sectorId" = $1', [id]);
-        return res.rows;
+        const place = await Place.findAll({
+            where: {
+                sectorId: id
+            }
+        });
+
+        return place;
     } catch (error) {
-        return error;
+        throw error;
     }
 }
 
-const save = async (place) => {
+const save = async (record) => {
     try {
-        const res = await pool.query('INSERT INTO places("name", "sectorId") VALUES($1, $2) RETURNING *',
-        [place.name, place.sectorId]);
-        return res.rows[0];
+        const place = Place.build({
+            name: record.name,
+            sectorId: record.sectorId
+        });
+
+        await place.save();
+        return place;
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
-const update = async (id, place) => {
+const update = async (id, record) => {
     try {
-        const res = await pool.query('UPDATE places SET name = $1, sectorId = $2 WHERE id = $3 RETURNING *',
-        [place.name, place.sectorId, id]);
-        return res.rows[0];
+        const place = await Place.update({
+            name: record.name,
+            sectorId: record.sectorId
+        }, {
+            where: {
+                id: id
+            },
+            returning: true
+        });
+
+        return place[1][0];
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
 const remove = async (id) => {
     try {
-        const res = await pool.query("DELETE FROM places WHERE id = $1 RETURNING *", [id]);
-        return res.rows[0];
+        const place = await Place.destroy({
+            where: {
+                id: id
+            },
+            returning: true
+        });
+
+        return place;
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 

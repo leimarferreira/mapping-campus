@@ -1,5 +1,5 @@
-const pool = require("../dbs/db");
 const classRepository = require("./ClassRepository");
+const { Event } = require("../../models/");
 
 const eventTypes = {
     "class": classRepository
@@ -7,17 +7,22 @@ const eventTypes = {
 
 const getAll = async () => {
     try {
-        const res = await pool.query("SELECT * FROM events");
-        return res.rows;
+        const events = await Event.findAll();
+        return events;
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
 const findById = async id => {
     try {
-        const res = await pool.query("SELECT * FROM events where id = $1", [id]);
-        return res.rows[0];
+        const event = await Event.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        return event;
     } catch (error) {
         return error;
     }
@@ -27,41 +32,47 @@ const findByPlaceId = id => {
     // TODO
 };
 
-const save = async event => {
+const save = async record => {
     try {
-        const res = await pool.query(
-            'INSERT INTO events (name, type, "eventId") VALUES ($1, $2, $3) RETURNING *',
-            [event.name, event.type, event.eventId]);
-        
-        await pool.query(
-            'INSERT INTO event_place("eventId", "placeId") VALUES ($1, $2)',
-            [res.rows[0].id, event.placeId]
-        );
+        const event = Event.build({
+            name: record.name,
+            type: record.type
+        });
 
-        event.id = res.rows[0].id;
-
-        return res.rows[0];
+        await event.save();
+        return event;
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
-const update = async (id, event) => {
+const update = async (id, record) => {
     try {
-        const res = await pool.query(
-            "UPDATE events SET name = $1, type = $2 WHERE id = $3 RETURNING *",
-            [event.name, event.type, id]);
-        return res.rows[0];
+        const event = await Event.update({
+            name: record.name,
+            type: record.type
+        }, {
+            where: {
+                id: id
+            },
+            returning: true
+        });
+
+        return event[1][0];
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
 const remove = async id => {
     try {
-        const res = await pool.query(
-            "DELETE FROM event WHERE id = $1 RETURNING * RETURNING *", [id]);
-        return res.rows[0];
+        const event = await Event.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        return event;
     } catch (error) {
         return error;
     }

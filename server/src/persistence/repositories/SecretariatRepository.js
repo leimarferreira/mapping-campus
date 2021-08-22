@@ -1,9 +1,9 @@
-const { SchoolBoard } = require("../../models");
+const { Secretariat } = require("../../models");
 
 const getAll = async () => {
     try {
-        const schoolBoardInfos = await SchoolBoard.findAll();
-        return schoolBoardInfos;
+        const secretariatInfos = await Secretariat.findAll();
+        return secretariatInfos;
     } catch (error) {
         throw error;
     }
@@ -11,13 +11,13 @@ const getAll = async () => {
 
 const findById = async id => {
     try {
-        const schoolBoardInfo = SchoolBoard.findOne({
+        const secretariatInfo = Secretariat.findOne({
             where: {
                 id: id
             }
         });
 
-        return schoolBoardInfo;
+        return secretariatInfo;
     } catch (error) {
         throw error;
     }
@@ -25,18 +25,16 @@ const findById = async id => {
 
 const save = async event => {
     try {
-        const schoolboardInfo = SchoolBoard.build({
-            directorName: event.directorName,
-            directorEmail: event.directorEmail,
-            viceDirectorName: event.viceDirectorName,
-            viceDirectorEmail: event.viceDirectorEmail,
+        const secreatiatInfo = Secretariat.build({
+            responsibleName: event.responsibleName,
+            responsibleEmail: event.responsibleEmail,
             openingTime: event.openingTime,
             closingTime: event.closingTime,
             additionalInfo: event.additionalInfo
         });
 
-        await schoolboardInfo.save();
-        return schoolboardInfo;
+        await secreatiatInfo.save();
+        return secreatiatInfo;
     } catch (error) {
         throw error;
     }
@@ -44,22 +42,19 @@ const save = async event => {
 
 const update = async (id, event) => {
     try {
-        const schoolboardInfo = await SchoolBoard.update({
-            directorName: event.directorName,
-            directorEmail: event.directorEmail,
-            viceDirectorName: event.viceDirectorName,
-            viceDirectorEmail: event.viceDirectorEmail,
+        const secreatiatInfo = await Secretariat.update({
+            responsibleName: event.responsibleName,
+            responsibleEmail: event.responsibleEmail,
             openingTime: event.openingTime,
             closingTime: event.closingTime,
             additionalInfo: event.additionalInfo
         }, {
             where: {
                 id: id
-            },
-            returning: true
+            }
         });
 
-        return schoolboardInfo[1][0];
+        return secreatiatInfo[1][0];
     } catch (error) {
         throw error;
     }
@@ -67,13 +62,13 @@ const update = async (id, event) => {
 
 const remove = async id => {
     try {
-        const schoolBoardInfo = await SchoolBoards.destroy({
+        const secretariatInfo = await Secretariat.destroy({
             where: {
                 id: id
             }
         });
 
-        return schoolBoardInfo;
+        return secretariatInfo;
     } catch (error) {
         throw error;
     }
