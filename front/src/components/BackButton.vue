@@ -13,8 +13,7 @@ img {
     align-self: center;
     max-width: 50px;
     max-height: 50px;
-    margin: auto;
-}
+    }
 
 img:hover {
     cursor: pointer;

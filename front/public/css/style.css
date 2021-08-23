@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #98a5a2;
+    background-color: #fcdede;
     font-family: sans-serif;
 }
 
@@ -144,6 +144,31 @@ input:focus {
     max-width: 150px;
     max-height: 150px;
     margin: auto;
+}
+
+.circle {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    min-height: 100%;
+    border-radius: 15px;
+    flex-direction: column;
+    text-decoration: none;
+    color: #388c91;
+    font-weight: bold;
+    opacity: 90%;
+    margin-bottom: 1%;
+}
+
+.logo{
+    display: flex;
+    min-width: 4px;
+    min-height: 500px;
+    border-radius: 150px;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 600px) {
