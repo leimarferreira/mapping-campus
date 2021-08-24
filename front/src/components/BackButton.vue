@@ -1,5 +1,5 @@
 <template>
-    <img src="../assets/arrow_left.svg" @click="$router.go(-1)">
+    <img src="../assets/setaVoltar.png" @click="$router.go(-1)" width="50" height="50">
 </template>
 
 <script>
@@ -11,8 +11,10 @@ export default {
 <style scoped>
 img {
     align-self: center;
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 1%;
+    margin-top: 1%;
     }
 
 img:hover {

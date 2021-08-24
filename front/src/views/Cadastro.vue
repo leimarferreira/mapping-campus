@@ -13,8 +13,8 @@
             <label class="form-label" for="password-confirm">Confirmar senha:</label>
             <input required class="form-control-md" type="password" name="password-confirm" id="password-confirm" v-model="passwordConfirm">
             <div class="buttons">
-                <button class="button" type="button" @click.prevent="$router.go(-1)">Voltar</button>
-                <button id="submit" class="button" type="submit" :disabled="hasError" @click="submitForm">Cadastrar</button>
+                <button class="buttonCadastroSair" type="button" @click.prevent="$router.go(-1)">Voltar</button>
+                <button id="submit" class="buttonCadastroConfirma" type="submit" :disabled="hasError" @click="submitForm">Cadastrar</button>
             </div>
             <div v-for="warn in warns" :key="warn">
                 <p class="text-danger">{{ warn }}</p>

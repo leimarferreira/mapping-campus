@@ -7,8 +7,8 @@
     <label class="form-label" for="">Senha:</label>
     <input required class="form-control-md" id="password" v-model="password" type="password">
     <div class="buttons">
-        <button class="button" @click.prevent="$router.go(-1)">Voltar</button>
-        <button class="button" @click="submitForm">Entrar</button>
+        <button class="buttonLoginEntrar" @click.prevent="$router.go(-1)">Voltar</button>
+        <button class="buttonLoginSair" @click="submitForm">Entrar</button>
     </div>
     <div v-for="warn in warns" :key="warn">
         <p class="text-danger">{{ warn }}</p>

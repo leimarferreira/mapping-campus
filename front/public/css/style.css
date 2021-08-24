@@ -93,20 +93,54 @@ input {
 input:focus {
     outline: none;
 }
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0;
-    margin: 10px;
-}
-
 .button {
     color: #388c91;
     border: 1px solid #388c91 ;
     border-radius: 50px;
     min-width: 110px;
     min-height: 40px;
+}
+
+.buttonLoginAutenticacao{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 110px;
+    min-height: 5px;
+    margin-bottom: -5px;
+}
+
+.buttonCadastroAutenticacao{ 
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 30px;
+    min-height: 5px;
+    top: -50px;
+}
+
+.tituloSetores{
+    text-align: center;
+    color: #388c91;
+}
+
+.buttonSetores{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 300px;
+    min-height: 50px;
+    margin-bottom: 5px;
+}
+
+.buttonsBlockSetores {
+    height: 50vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
 }
 
 .btnlink {
@@ -146,13 +180,13 @@ input:focus {
     margin: auto;
 }
 
-.circle {
+.localIcon {
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 300px;
-    min-height: 100%;
+    min-height: 95%;
     border-radius: 15px;
     flex-direction: column;
     text-decoration: none;
@@ -170,6 +204,64 @@ input:focus {
     justify-content: center;
     align-items: center;
 }
+
+.buttonBack{
+    align-self: center;
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 1%;
+    margin-top: 1%;
+
+}
+
+.buttonLoginEntrar{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 110px;
+    min-height: 5px;
+    margin-bottom: -5px;
+}
+
+.buttonLoginSair{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 110px;
+    min-height: 5px;
+    margin-bottom: -5px;
+    margin-left: 7px;
+}
+
+.buttonCadastroConfirma{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 110px;
+    min-height: 5px;
+    margin-bottom: -5px;
+    margin-left: 7px;
+}
+
+.buttonCadastroSair{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 110px;
+    min-height: 5px;
+    margin-bottom: -5px;
+    margin-left: 7px;
+}
+
+.buttonAdicionaLocal{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 300px;
+    min-height: 50px;
+    margin-bottom: 5px;
+}
+
 
 @media screen and (max-width: 600px) {
     .block {
