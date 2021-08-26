@@ -1,15 +1,13 @@
 <template>
 <div>
-    <button class="button btn-lg" @click="redirectToForm">Adicionar novo local</button>
-    <div v-for="place in places" :key="place.id">
-        <button class="btn-lg button" @click="redirectToPlace(place.id)">{{ place.name }}</button>
+    <div class="backButton">
+        <PageFooter/>
     </div>
-    
-        <div class="pageFooter">
-    
-            <PageFooter/>
-        </div>
-
+   
+    <div v-for="place in places" :key="place.id">
+        <button class="buttonAdicionaLocaln" @click="redirectToPlace(place.id)">{{ place.name }}</button>
+    </div>
+     <button class="buttonAdicionaLocal" @click="redirectToForm">Adicionar novo local</button>
 </div>
 </template>
 

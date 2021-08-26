@@ -59,19 +59,18 @@ export default {
     methods: {
         onsubmit() {
             
-            const idSetor = this.$route.params.idSetor;
-                api.post("/events", {
-                    
+            const idLocal = this.$route.params.idLocal;
+                api.post("/coordinations", {
                     type: "coordenacao",
-                    
-                        name: this.name,
-                        email: this.email,
-                        viceName: this.viceName,
-                        viceEmail: this.viceEmail,
-                        opening: this.opening,
-                        closing: this.closing,
-                        info: this.info
-                    
+                    name: "Informações",
+                    coordinatorName: this.name,
+                    coordinatorEmail: this.email,
+                    viceCoordinatorName: this.viceName,
+                    viceCoordinatorEmail: this.viceEmail,
+                    openingTime: this.opening,
+                    closingTime: this.closing,
+                    additionalInfo: this.info,
+                    placeId: idLocal
                 });   
         },
     }

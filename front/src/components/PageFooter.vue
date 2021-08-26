@@ -1,7 +1,6 @@
 <template>
 <div>
     <BackButton/>
-    <h3>Voltar</h3>
 </div>
 </template>
 

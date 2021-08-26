@@ -23,7 +23,7 @@
 
            <div class="buttons">
                 <button class="button" @click.prevent="submitForm">Adicionar</button>
-            </div>
+           </div>
         </form>
 
         <div class="pageFooter">
@@ -69,7 +69,7 @@ export default {
                 academicArea: this.salaProfessor.areaAcademica,
                 arrivalTime: this.salaProfessor.horaChegada,
                 departureTime: this.salaProfessor.horaSaida,
-                additionalInfo: this.info
+                additionalInfo: this.salaProfessor.info
             });
         },
         async retriveData() {

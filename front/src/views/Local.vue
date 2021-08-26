@@ -18,7 +18,9 @@ export default {
     },
     methods: {
         async retrieveData() {
-            this.events = (await api.get("/events")).data;
+            const idLocal = this.$route.params.idLocal;
+            this.events = (await api.get(`/events/place/${idLocal}`)).data;
+            console.log(this.events);
         },
         redirectToForm() {
             const idSetor = this.$route.params.idSetor;

@@ -67,7 +67,7 @@ export default {
     methods: {
         submitForm() {
             const idLocal = this.$route.params.idLocal;
-            api.post("/events", {
+            api.post("/classes", {
                 placeId: idLocal,
                 type: this.aula.tipo,
                 name: this.aula.nome,
@@ -83,15 +83,17 @@ export default {
         async retriveData() {
             const idEvento = this.$route.params.idEvento;
             if (idEvento) {
+                const _class = (await api.get(`/classes/${idEvento}`)).data;
+                this.aula.disciplina = _class.subject;
+                this.aula.codigoDisciplina = _class.subjectCode;
+                this.aula.curso = _class.course;
+                this.aula.codigoTurma = _class.classCode;
+                this.aula.nomeProfessor = _class.professorName;
+                this.aula.emailProfessor = _class.professorEmail;
+                this.aula.informacoesAdicionais = _class.additionalInfo;
+
                 const event = (await api.get(`/events/${idEvento}`)).data;
                 this.aula.nome = event.name;
-                this.aula.disciplina = event.subject;
-                this.aula.codigoDisciplina = event.subjectCode;
-                this.aula.curso = event.course;
-                this.aula.codigoTurma = event.classCode;
-                this.aula.nomeProfessor = event.professorName;
-                this.aula.emailProfessor = event.professorEmail;
-                this.aula.informacoesAdicionais = event.additionalInfo;
             }
         }
     },
