@@ -51,11 +51,27 @@ const getById = async (req, res) => {
     try {
         let id = req.params.id;
 
-        const { type, eventId } = await eventService.findById(id);
-        const event = await eventTypeServices[type].findById(eventId);
+        const event = await eventService.findById(id);
         
         if (event) {
             res.status(200).json(event);
+        } else {
+            res.status(404).end();
+        }
+    } catch (error) {
+        res.status(400).end();
+    }
+
+};
+
+const getByPlaceId = async (req, res) => {
+    try {
+        let id = req.params.id;
+
+        const events = await eventService.findByPlaceId(id);
+        
+        if (events) {
+            res.status(200).json(events);
         } else {
             res.status(404).end();
         }
@@ -69,8 +85,9 @@ const post = async (req, res) => {
     const type = req.body.type;
 
     try {
-        //const eventId = (await eventTypeServices[type].save(req.body)).id;
-        const event = await eventService.save(/* Object.assign({ eventId },  */req.body);
+        const eventId = (await eventService.save(req.body)).id;
+        req.body.eventId = eventId;
+        const event = await eventTypeServices[type].save(req.body);
         res.status(201).json(event);
     } catch (error) {
         res.status(400).end();
@@ -82,7 +99,8 @@ const put = async (req, res) => {
 
     try {
         const event = await eventService.update(id, req.body);
-
+        const classes = await classService.getAll();
+        
         if (event) {
             res.status(200).json(event);
         } else {
@@ -113,6 +131,7 @@ const remove = async (req, res) => {
 module.exports = {
     get,
     getById,
+    getByPlaceId,
     post,
     put,
     remove

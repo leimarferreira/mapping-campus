@@ -13,7 +13,7 @@ const findById = async id => {
     try {
         const coordination = Coordination.findOne({
             where: {
-                id: id
+                eventId: id
             }
         });
 
@@ -32,7 +32,8 @@ const save = async event => {
             viceCoordinatorEmail: event.viceCoordinatorEmail,
             openingTime: event.openingTime,
             closingTime: event.closingTime,
-            additionalInfo: event.additionalInfo
+            additionalInfo: event.additionalInfo,
+            eventId: event.eventId
         });
 
         await coordination.save();

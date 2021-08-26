@@ -1,7 +1,7 @@
 const sequelize = require("./config");
 const { DataTypes } = require("sequelize");
 
-const Secretariat = sequelize.define("Secretariat", {
+const Secretariat = sequelize.define("secretariat", {
     responsibleName: {
         type: DataTypes.STRING,
         allowNull: false

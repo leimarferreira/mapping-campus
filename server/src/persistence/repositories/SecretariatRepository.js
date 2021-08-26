@@ -30,7 +30,8 @@ const save = async event => {
             responsibleEmail: event.responsibleEmail,
             openingTime: event.openingTime,
             closingTime: event.closingTime,
-            additionalInfo: event.additionalInfo
+            additionalInfo: event.additionalInfo,
+            eventId: event.eventId
         });
 
         await secreatiatInfo.save();

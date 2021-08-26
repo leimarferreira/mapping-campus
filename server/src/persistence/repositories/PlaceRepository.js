@@ -23,7 +23,8 @@ const findById = async (id) => {
         const place = await Place.findOne({
             where: {
                 id: id
-            }
+            },
+            include: { all: true }
         });
 
         return place;

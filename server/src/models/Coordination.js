@@ -1,7 +1,7 @@
 const sequelize = require("./config");
 const { DataTypes } = require("sequelize");
 
-const Coordination = sequelize.define("Coordination", {
+const Coordination = sequelize.define("coordination", {
     coordinatorName: {
         type: DataTypes.STRING,
         allowNull: false

@@ -1,7 +1,7 @@
 const sequelize = require("./config");
 const { DataTypes } = require("sequelize");
 
-const SchoolBoard = sequelize.define("SchoolBoard", {
+const SchoolBoard = sequelize.define("schoolBoard", {
     directorName: {
         type: DataTypes.STRING,
         allowNull: false

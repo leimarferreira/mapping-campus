@@ -1,8 +1,10 @@
-const { Class } = require("../../models/");
+const { Class, Event } = require("../../models/");
 
 const getAll = async () => {
     try {
-        const classes = await Class.findAll();
+        const classes = await Class.findAll({
+            include: { all: true }
+        });
         return classes;
     } catch (error) {
         throw error;
@@ -13,7 +15,7 @@ const findById = async id => {
     try {
         const _class = Class.findOne({
             where: {
-                id: id
+                eventId: id
             }
         });
 
@@ -23,16 +25,17 @@ const findById = async id => {
     }
 };
 
-const save = async event => {
+const save = async record => {
     try {
         const _class = Class.build({
-            subject: event.subject,
-            subjectCode: event.subjectCode,
-            course: event.course,
-            classCode: event.classCode,
-            professorName: event.professorName,
-            professorEmail: event.professorEmail,
-            additionalInfo: event.additionalInfo
+            subject: record.subject,
+            subjectCode: record.subjectCode,
+            course: record.course,
+            classCode: record.classCode,
+            professorName: record.professorName,
+            professorEmail: record.professorEmail,
+            additionalInfo: record.additionalInfo,
+            eventId: record.eventId
         });
 
         await _class.save();

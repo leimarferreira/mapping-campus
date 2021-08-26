@@ -12,8 +12,8 @@ const findById = async id => {
     return await eventRepository.findById(id);
 };
 
-const findByPlaceId = id => {
-    // TODO
+const findByPlaceId = async id => {
+    return await eventRepository.findByPlaceId(id);
 };
 
 const save = async event => {

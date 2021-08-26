@@ -32,7 +32,8 @@ const save = async event => {
             viceDirectorEmail: event.viceDirectorEmail,
             openingTime: event.openingTime,
             closingTime: event.closingTime,
-            additionalInfo: event.additionalInfo
+            additionalInfo: event.additionalInfo,
+            eventId: event.eventId
         });
 
         await schoolboardInfo.save();

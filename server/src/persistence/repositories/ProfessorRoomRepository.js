@@ -5,7 +5,6 @@ const getAll = async () => {
         const result = await pool.query(`SELECT * FROM "professorRoom"`);
         return result.rows;
     } catch (error) {
-        console.dir(error)
         return error;
     }
 };
@@ -15,7 +14,6 @@ const findById = async id => {
         const result = await pool.query(`SELECT * FROM "professorRoom" WHERE id = $1", [id]`);
         return result.rows[0];
     } catch (error) {
-        console.dir(error)
         return error;
     }
 };
@@ -33,7 +31,6 @@ const save = async event => {
 
         return result.rows[0];
     } catch (error) {
-        console.dir(error)
         return error;
     }
 };

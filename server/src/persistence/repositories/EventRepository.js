@@ -1,13 +1,10 @@
-const classRepository = require("./ClassRepository");
 const { Event } = require("../../models/");
-
-const eventTypes = {
-    "class": classRepository
-};
 
 const getAll = async () => {
     try {
-        const events = await Event.findAll();
+        const events = await Event.findAll({
+            include: { all: true, nested: true }
+        });
         return events;
     } catch (error) {
         throw error;
@@ -28,6 +25,10 @@ const findById = async id => {
         const event = await Event.findOne({
             where: {
                 id: id
+            },
+            include: {
+                all: true,
+                nested: true
             }
         });
 
@@ -37,15 +38,30 @@ const findById = async id => {
     }
 };
 
-const findByPlaceId = id => {
-    // TODO
+const findByPlaceId = async id => {
+    try {
+        const events = await Event.findAll({
+            where: {
+                placeId: id
+            },
+            include: {
+                all: true,
+                nested: true
+            }
+        });
+
+        return events;
+    } catch (error) {
+        return error;
+    }
 };
 
 const save = async record => {
     try {
         const event = Event.build({
             name: record.name,
-            type: record.type
+            type: record.type,
+            placeId: record.placeId
         });
 
         await event.save();
@@ -59,12 +75,13 @@ const update = async (id, record) => {
     try {
         const event = await Event.update({
             name: record.name,
-            type: record.type
+            type: record.type,
+            placeId: record.placeId
         }, {
             where: {
                 id: id
             },
-            returning: true
+            returning: true,
         });
 
         return event[1][0];

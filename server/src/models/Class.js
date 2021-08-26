@@ -1,7 +1,7 @@
 const sequelize = require("./config");
 const { DataTypes } = require("sequelize");
 
-const Class = sequelize.define("Class", {
+const Class = sequelize.define("class", {
     subject: {
         type: DataTypes.STRING,
         allowNull: false
