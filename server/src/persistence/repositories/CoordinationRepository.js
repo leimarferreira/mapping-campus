@@ -1,8 +1,10 @@
-const { Coordination } = require("../../models/");
+const { Coordination, Event } = require("../../models/");
 
 const getAll = async () => {
     try {
-        const coordinations = await Coordination.findAll();
+        const coordinations = await Coordination.findAll({
+            include: { all: true }
+        });
         return coordinations;
     } catch (error) {
         throw error;
@@ -14,7 +16,8 @@ const findById = async id => {
         const coordination = Coordination.findOne({
             where: {
                 eventId: id
-            }
+            },
+            include: { all: true }
         });
 
         return coordination;
@@ -69,13 +72,12 @@ const update = async (id, event) => {
 
 const remove = async id => {
     try {
-        const coordination = await Coordination.destroy({
+        const coordination = await findById(id);
+        return await Event.destroy({
             where: {
-                id: id
+                id: coordination.eventId
             }
         });
-
-        return coordination;
     } catch (error) {
         throw error;
     }

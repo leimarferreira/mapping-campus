@@ -1,8 +1,10 @@
-const { SchoolBoard } = require("../../models");
+const { SchoolBoard, Event } = require("../../models");
 
 const getAll = async () => {
     try {
-        const schoolBoardInfos = await SchoolBoard.findAll();
+        const schoolBoardInfos = await SchoolBoard.findAll({
+            include: { all: true }
+        });
         return schoolBoardInfos;
     } catch (error) {
         throw error;
@@ -13,8 +15,9 @@ const findById = async id => {
     try {
         const schoolBoardInfo = SchoolBoard.findOne({
             where: {
-                id: id
-            }
+                eventId: id
+            },
+            include: { all: true }
         });
 
         return schoolBoardInfo;
@@ -68,13 +71,12 @@ const update = async (id, event) => {
 
 const remove = async id => {
     try {
-        const schoolBoardInfo = await SchoolBoards.destroy({
+        const schoolBoard = await findById(id);
+        return await Event.destroy({
             where: {
-                id: id
+                id: schoolBoard.eventId
             }
         });
-
-        return schoolBoardInfo;
     } catch (error) {
         throw error;
     }

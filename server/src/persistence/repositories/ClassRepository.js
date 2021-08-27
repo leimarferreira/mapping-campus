@@ -16,7 +16,8 @@ const findById = async id => {
         const _class = Class.findOne({
             where: {
                 eventId: id
-            }
+            },
+            include: { all: true }
         });
 
         return _class;
@@ -70,13 +71,12 @@ const update = async (id, event) => {
 
 const remove = async id => {
     try {
-        const _class = await Class.destroy({
+        const _class = await findById(id);
+        return await Event.destroy({
             where: {
-                id: id
+                id: _class.eventId
             }
         });
-
-        return _class;
     } catch (error) {
         throw error;
     }

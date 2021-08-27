@@ -32,6 +32,7 @@ module.exports = {
     getAll,
     findById,
     findByPlaceId,
+    getLimited,
     save,
     update,
     remove

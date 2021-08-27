@@ -9,8 +9,9 @@ const usersRoute = require("./routes/UsersRoute");
 const classesRoute = require("./routes/ClassesRoute");
 const coordinationsRoute = require("./routes/CoordinationsRoute");
 const frontDeskRoute = require("./routes/FrontDeskRoute");
-const schoolBoardRoute = require("./routes/SchoolBoardRoute");
+const professorRoomRoute = require("./routes/ProfessorRoomRoute");
 const secretariatRoute = require("./routes/SecretariatRoute");
+const schoolBoardRoute = require("./routes/SchoolBoardRoute");
 const treasuryRoute = require("./routes/TreasuryRoute");
 const authenticationRoute = require("./routes/AuthenticationRoute");
 
@@ -32,8 +33,9 @@ app.use("/authentication", authenticationRoute);
 app.use("/classes", classesRoute);
 app.use("/coordinations", coordinationsRoute);
 app.use("/frontdesk", frontDeskRoute);
-app.use("/schoolboard", schoolBoardRoute);
+app.use("/professorroom", professorRoomRoute);
 app.use("/secretariat", secretariatRoute);
+app.use("/schoolboard", schoolBoardRoute);
 app.use("/treasury", treasuryRoute);
 
 module.exports = app;

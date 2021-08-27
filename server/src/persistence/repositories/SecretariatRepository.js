@@ -1,8 +1,10 @@
-const { Secretariat } = require("../../models");
+const { Secretariat, Event } = require("../../models");
 
 const getAll = async () => {
     try {
-        const secretariatInfos = await Secretariat.findAll();
+        const secretariatInfos = await Secretariat.findAll({
+            include: { all: true }
+        });
         return secretariatInfos;
     } catch (error) {
         throw error;
@@ -13,8 +15,9 @@ const findById = async id => {
     try {
         const secretariatInfo = Secretariat.findOne({
             where: {
-                id: id
-            }
+                eventId: id
+            },
+            include: { all: true }
         });
 
         return secretariatInfo;
@@ -63,13 +66,12 @@ const update = async (id, event) => {
 
 const remove = async id => {
     try {
-        const secretariatInfo = await Secretariat.destroy({
+        const secretariat = await findById(id);
+        return await Event.destroy({
             where: {
-                id: id
+                id: secretariat.eventId
             }
         });
-
-        return secretariatInfo;
     } catch (error) {
         throw error;
     }

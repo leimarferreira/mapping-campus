@@ -12,8 +12,18 @@ const save = async event => {
     return await professorRoomRepository.save(event);
 };
 
+const update = async (id, event) => {
+    return await professorRoomRepository.update(id, event);
+}
+
+const remove = async id => {
+    return await professorRoomRepository.remove(id);
+}
+
 module.exports = {
     getAll,
     findById,
-    save
+    save,
+    update,
+    remove
 };
