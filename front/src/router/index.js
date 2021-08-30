@@ -3,6 +3,7 @@ import Index from '@/views/Index';
 import Autenticacao from '@/views/Autenticacao';
 import Cadastro from '@/views/Cadastro';
 import Login from '@/views/Login';
+import MapaView from '@/views/MapaView';
 import Setores from '@/views/Setores';
 import Locais from '@/views/Locais';
 import Local from '@/views/Local';
@@ -14,6 +15,7 @@ const routes = [
     { path: '/autenticacao', component: Autenticacao },
     { path: '/cadastrar', component: Cadastro },
     { path: '/login', component: Login },
+    { path: '/mapaView', component: MapaView},
     { path: '/setores', component: Setores },
     { path: '/setores/:idSetor', component: Locais },
     { path: '/setores/:idSetor/add', component: AddLocal },
