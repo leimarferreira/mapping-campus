@@ -58,7 +58,7 @@ const update = async (id, event) => {
             additionalInfo: event.additionalInfo
         }, {
             where: {
-                id: id
+                eventId: id
             },
             returning: true
         });

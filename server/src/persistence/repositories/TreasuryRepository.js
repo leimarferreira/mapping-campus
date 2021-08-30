@@ -52,6 +52,10 @@ const update = async (id, event) => {
             openingTime: event.openingTime,
             closingTime: event.closingTime,
             additionalInfo: event.additionalInfo
+        }, {
+            where: {
+                eventId: id
+            }
         });
 
         return treasuryInfo[1][0];

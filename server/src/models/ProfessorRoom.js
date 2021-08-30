@@ -2,22 +2,22 @@ const sequelize = require("./config");
 const { DataTypes } = require("sequelize");
 
 const ProfessorRoom = sequelize.define("professorRoom", {
-    name: {
+    professorName: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
+    professorEmail: {
         type: DataTypes.STRING,
         allowNull: false
     },
     academicArea: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
-    arrivaltime: {
+    arrivalTime: {
         type: DataTypes.TIME
     },
     departureTime: {
-        type: DataTypes.TIME,
+        type: DataTypes.TIME
     },
     additionalInfo: {
         type: DataTypes.TEXT

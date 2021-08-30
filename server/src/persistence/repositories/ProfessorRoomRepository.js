@@ -30,10 +30,11 @@ const findById = async id => {
 const save = async event => {
     try {
         const professorRoomInfo = ProfessorRoom.build({
-            responsibleName: event.responsibleName,
-            responsibleEmail: event.responsibleEmail,
-            openingTime: event.openingTime,
-            closingTime: event.closingTime,
+            professorName: event.professorName,
+            professorEmail: event.professorEmail,
+            academicArea: event.academicArea,
+            arrivalTime: event.arrivalTime,
+            departureTime: event.departureTime,
             additionalInfo: event.additionalInfo,
             eventId: event.eventId
         });
@@ -48,14 +49,15 @@ const save = async event => {
 const update = async (id, event) => {
     try {
         const professorRoomInfo = await ProfessorRoom.update({
-            responsibleName: event.responsibleName,
-            responsibleEmail: event.responsibleEmail,
-            openingTime: event.openingTime,
-            closingTime: event.closingTime,
+            professorName: event.professorName,
+            professorEmail: event.professorEmail,
+            academicArea: event.academicArea,
+            arrivalTime: event.arrivalTime,
+            depatureTime: event.depatureTime,
             additionalInfo: event.additionalInfo
         }, {
             where: {
-                id: id
+                eventId: id
             },
             returning: true
         });
