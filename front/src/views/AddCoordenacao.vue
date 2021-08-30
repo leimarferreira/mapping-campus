@@ -7,25 +7,25 @@
         <form class="block" @submit.prevent="onsubmit">
             <h3>Coordenador </h3>
             <label class="form-label">Nome: </label>
-            <input minlength="5" required class="form-control-md" id="name" v-model="name" type="text">
+            <input required class="form-control-md" id="name" v-model="coordinatorName" type="text">
             <label class="form-label">Email: </label>
-            <input minlength="5" required class="form-control-md" id="email" v-model="email" type="text">
+            <input required class="form-control-md" id="email" v-model="coordinatorEmail" type="text">
             <h3>Vice Coordenador</h3>
             <label class="form-label">Nome: </label>
-            <input required minlength="5" class="form-control-md" id="vice-name" v-model="viceName" type="text">
+            <input required class="form-control-md" id="vice-name" v-model="viceName" type="text">
             <label class="form-label">Email: </label>
-            <input required minlength="5" class="form-control-md" id="vice-email" v-model="viceEmail" type="text">
+            <input required class="form-control-md" id="vice-email" v-model="viceEmail" type="text">
             <h3>Horarios</h3>
             <label class="form-label">Abertura: </label>
-            <input required minlength="5" class="form-control-md" id="time-opening" v-model="opening" type="time">
+            <input required class="form-control-md" id="time-opening" v-model="opening" type="time">
             <label class="form-label">Fechamento: </label>
-            <input required minlength="5" class="form-control-md" id="time-closing" v-model="closing" type="time">
+            <input required class="form-control-md" id="time-closing" v-model="closing" type="time">
             <h3>Outras Informacoes</h3>
             <label class="form-label">Informacoes adicionais: </label>
             <input class="form-control-md" id="info" v-model="info" type="text">
 
             <div class="buttons">
-                <button class="button">Adicionar</button>
+                <button class="button">Enviar</button>
             </div>
         </form>
 
@@ -47,8 +47,8 @@ export default {
     },
     data() {
         return {
-            name: "",
-            email: "",
+            coordinatorName: "",
+            coordinatorEmail: "",
             viceName: "",
             viceEmail: "",
             opening: "",
@@ -58,21 +58,42 @@ export default {
     },
     methods: {
         onsubmit() {
-            
-            const idLocal = this.$route.params.idLocal;
-                api.post("/coordinations", {
-                    type: "coordenacao",
-                    name: "Informações",
-                    coordinatorName: this.name,
-                    coordinatorEmail: this.email,
-                    viceCoordinatorName: this.viceName,
-                    viceCoordinatorEmail: this.viceEmail,
-                    openingTime: this.opening,
-                    closingTime: this.closing,
-                    additionalInfo: this.info,
-                    placeId: idLocal
-                });   
+            const coordination = {
+                type: "coordenacao",
+                name: "Informações",
+                coordinatorName: this.coordinatorName,
+                coordinatorEmail: this.coordinatorEmail,
+                viceCoordinatorName: this.viceName,
+                viceCoordinatorEmail: this.viceEmail,
+                openingTime: this.opening,
+                closingTime: this.closing,
+                additionalInfo: this.info,
+                placeId: this.$route.params.idLocal
+            };
+
+            if (this.$route.params.idEvento) {
+                api.put(`/coordinations/${this.$route.params.idEvento}`, coordination);
+            } else {
+                api.post("/coordinations", coordination);
+            }
         },
+        async retrieveData() {
+            const idEvento = this.$route.params.idEvento;
+
+            if (idEvento) {
+                const coordination = (await api.get(`/coordinations/${idEvento}`)).data;
+                this.coordinatorName = coordination.coordinatorName;
+                this.coordinatorEmail = coordination.coordinatorEmail;
+                this.viceName = coordination.viceCoordinatorName;
+                this.viceEmail = coordination.viceCoordinatorEmail;
+                this.opening = coordination.openingTime;
+                this.closing = coordination.closingTime;
+                this.info = coordination.additionalInfo;
+            }
+        }
+    },
+    created() {
+        this.retrieveData();
     }
 }
 </script>

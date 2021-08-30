@@ -4,12 +4,12 @@
             <PageHeader title="Recepcao"/>
         </div>
 
-        <form class="block" @submit.prevent="onsubmit">
+        <form class="block">
             <h3>Recepcionista</h3>
             <label class="form-label">Nome: </label>
-            <input minlength="5" required class="form-control-md" id="name" v-model="name" type="text">
+            <input required class="form-control-md" id="name" v-model="responsibleName" type="text">
             <label class="form-label">Email: </label>
-            <input minlength="5" required class="form-control-md" id="email" v-model="email" type="text">
+            <input required class="form-control-md" id="email" v-model="responsibleEmail" type="text">
             <h3>Horarios</h3>
             <label class="form-label">Abertura: </label>
             <input required class="form-control-md" id="time-opening" v-model="opening" type="time">
@@ -19,7 +19,7 @@
             <label class="form-label">Informacoes adicionais: </label>
             <input class="form-control-md" id="info" v-model="info" type="text">
             <div class="buttons">
-                <button class="button">Adicionar</button>
+                <button class="button" @click.prevent="submitForm">Adicionar</button>
             </div>
         </form>
 
@@ -41,26 +41,39 @@ export default {
     },
     data() {
         return {
-            name: "",
-            email: "",
+            responsibleName: "",
+            responsibleEmail: "",
             opening: "",
             closing: "",
             info: ""
         }
     },
     methods: {
-        submit() {
-            const idSector = this.$route.params.idSector;
-            api.post("/events", {
+        submitForm() {
+            api.post("/frontdesk", {
                 type: "recepcao",
-                    name: this.name,
-                    email: this.email,
-                    opening: this.opening,
-                    closing: this.closing,
-                    info: this.info
-                
-            })
+                name: "Recepção",
+                responsibleName: this.responsibleName,
+                responsibleEmail: this.responsibleName,
+                openingTime: this.opening,
+                closingTime: this.closing,
+                additionalInfo: this.info,
+                placeId: this.$route.params.idLocal
+            });
         },
+        async retrieveData() {
+            if (this.$route.params.idEvento) {
+                const frontDeskInfo = (await api.get(`/frontdesk/${this.$route.params.idEvento}`)).data;
+                this.responsibleName = frontDeskInfo.responsibleName;
+                this.responsibleEmail = frontDeskInfo.responsibleEmail;
+                this.opening = frontDeskInfo.openingTime;
+                this.closing = frontDeskInfo.closingTime;
+                this.info = frontDeskInfo.additionalInfo;
+            }
+        }
+    },
+    created() {
+        this.retrieveData();
     }
 }
 </script>

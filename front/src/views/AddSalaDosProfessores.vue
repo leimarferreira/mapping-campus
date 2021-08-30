@@ -14,15 +14,15 @@
             <label class="form-label" for="areaAcademica">Área acadêmica</label>
             <input required minlength="5" class="form-control-md" name="areaAcademica" id="areaAcademica" v-model="salaProfessor.areaAcademica" type="text">
             <label class="form-label" for="horaChegada">hora de chegada</label>
-            <input required minlength="5" class="form-control-md" name="horaChegada" id="horaChegada" v-model="salaProfessor.horaChegada" type="text">
+            <input required minlength="5" class="form-control-md" name="horaChegada" id="horaChegada" v-model="salaProfessor.horaChegada" type="time">
             <label class="form-label" for="horaSaida">Hora De saída</label>
-            <input required minlength="5" class="form-control-md" name="horaSaida" id="horaSaida" v-model="salaProfessor.horaSaida" type="text">
+            <input required minlength="5" class="form-control-md" name="horaSaida" id="horaSaida" v-model="salaProfessor.horaSaida" type="time">
             <h3>Outras informações</h3>
             <label class="form-label" for="info">Informações adicionais</label>
-            <textarea class="form-control-md" name="info" id="info" cols="30" rows="10" v-model="salaProfessor.info"></textarea>
+            <textarea class="form-control-md" name="info" id="info" cols="30" rows="5" v-model="salaProfessor.info"></textarea>
 
            <div class="buttons">
-                <button class="button" @click.prevent="submitForm">Adicionar</button>
+                <button class="button" @click.prevent="submitForm">Enviar</button>
            </div>
         </form>
 
@@ -60,23 +60,29 @@ export default {
     methods: {
         submitForm() {
             const idLocal = this.$route.params.idLocal;
-            api.post("/events", {
+            const professorInfo = {
                 placeId: idLocal,
                 type: this.salaProfessor.tipo,
-                name: this.aula.nome,
+                name: this.salaProfessor.nome,
                 professorName: this.salaProfessor.nome,
                 professorEmail: this.salaProfessor.emailProfessor,
                 academicArea: this.salaProfessor.areaAcademica,
                 arrivalTime: this.salaProfessor.horaChegada,
                 departureTime: this.salaProfessor.horaSaida,
                 additionalInfo: this.salaProfessor.info
-            });
+            };
+
+            if (this.$route.params.idEvento) {
+                api.put(`/professorroom/${this.$route.params.idEvento}`, professorInfo);
+            } else {
+                api.post("/professorroom", professorInfo);
+            }
         },
         async retriveData() {
             const idEvento = this.$route.params.idEvento;
             if (idEvento) {
-                const event = (await api.get(`/events/${idEvento}`)).data;
-                this.salaProfessor.nome = event.name;
+                const event = (await api.get(`/professorroom/${idEvento}`)).data;
+                this.salaProfessor.nome = event.professorName;
                 this.salaProfessor.emailProfessor = event.professorEmail;
                 this.salaProfessor.areaAcademica = event.academicArea;
                 this.salaProfessor.horaChegada = event.arrivalTime;

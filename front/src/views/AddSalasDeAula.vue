@@ -25,10 +25,10 @@
 
             <h3>Outras informações</h3>
             <label class="form-label" for="outros">Informações adicionais</label>
-            <textarea class="form-control-md" name="outros" id="outros" cols="30" rows="10" v-model="aula.informacoesAdicionais"></textarea>
+            <textarea class="form-control-md" name="outros" id="outros" cols="30" rows="5" v-model="aula.informacoesAdicionais"></textarea>
 
             <div class="buttons">
-                <button class="button" @click.prevent="submitForm">Adicionar</button>
+                <button class="button" @click.prevent="submitForm">Enviar</button>
             </div>
 
             <div class="pageFooter">
@@ -67,7 +67,8 @@ export default {
     methods: {
         submitForm() {
             const idLocal = this.$route.params.idLocal;
-            api.post("/classes", {
+
+            const classRoom = {
                 placeId: idLocal,
                 type: this.aula.tipo,
                 name: this.aula.nome,
@@ -77,8 +78,14 @@ export default {
                 classCode: this.aula.codigoTurma,
                 professorName: this.aula.nomeProfessor,
                 professorEmail: this.aula.emailProfessor,
-                additionalInfo: this.informacoesAdicionais
-            });
+                additionalInfo: this.aula.informacoesAdicionais
+            };
+
+            if (this.$route.params.idEvento) {
+                api.put(`/classes/${this.$route.params.idEvento}`, classRoom);
+            } else {
+                api.post("/classes", classRoom);
+            }
         },
         async retriveData() {
             const idEvento = this.$route.params.idEvento;
@@ -92,8 +99,7 @@ export default {
                 this.aula.emailProfessor = _class.professorEmail;
                 this.aula.informacoesAdicionais = _class.additionalInfo;
 
-                const event = (await api.get(`/events/${idEvento}`)).data;
-                this.aula.nome = event.name;
+                this.aula.nome = _class.event.name;
             }
         }
     },

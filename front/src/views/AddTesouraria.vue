@@ -4,12 +4,12 @@
             <PageHeader title="Tesouraria"/>
         </div>
 
-        <form class="block" @submit.prevent="onsubmit">
+        <form class="block">
             <h3>Tesoureiro</h3>
             <label class="form-label">Nome: </label>
-            <input required minlength="5" class="form-control-md" id="name" v-model="name" type="text">
+            <input required minlength="5" class="form-control-md" id="name" v-model="responsibleName" type="text">
             <label class="form-label">Email: </label>
-            <input required minlength="5" class="form-control-md" id="email" v-model="email" type="text">
+            <input required minlength="5" class="form-control-md" id="email" v-model="responsibleEmail" type="text">
             <h3>Horarios</h3>
             <label class="form-label">Abertura: </label>
             <input required class="form-control-md" id="time-opening" v-model="opening" type="time">
@@ -19,7 +19,7 @@
             <label class="form-label">Informacoes adicionais: </label>
             <input class="form-control-md" id="info" v-model="info" type="text">
             <div class="buttons">
-                <button class="button">Adicionar</button>
+                <button class="button" @click.prevent="submit">Adicionar</button>
             </div>
         </form>
 
@@ -41,8 +41,8 @@ export default {
     },
     data() {
         return {
-            name: "",
-            email: "",
+            responsibleName: "",
+            responsibleEmail: "",
             opening: "",
             closing: "",
             info: ""
@@ -50,19 +50,36 @@ export default {
     },
     methods: {
         onsubmit() {
-          
-            const idSector = this.$route.params.idSector;
-            api.post("/events", {
+            const treasuryInfo = {
                 type: "tesouraria",
-                
-                    name: this.name,
-                    email: this.email,
-                    opening: this.opening,
-                    closing: this.closing,
-                    info: this.info
-                
-            })
+                name: "Tesouraria",
+                responsibleName: this.responsibleName,
+                responsibleEmail: this.responsibleEmail,
+                openingTime: this.opening,
+                closingTime: this.closing,
+                additionalInfo: this.info,
+                placeId: this.$route.params.idLocal
+            };
+
+            if (this.$route.params.idEvento) {
+                api.put(`/treasury/${this.$route.params.idEvento}`, treasuryInfo)
+            } else {
+                api.post("/treasury", treasuryInfo);
+            }
+        },
+        async retrieveData() {
+            if (this.$route.params.idEvento) {
+                const secretariatInfo = (await api.get(`/treasury/${this.$route.params.idEvento}`)).data;
+                this.responsibleName = secretariatInfo.responsibleName;
+                this.responsibleEmail = secretariatInfo.responsibleEmail;
+                this.opening = secretariatInfo.openingTime;
+                this.closing = secretariatInfo.closingTime;
+                this.info = secretariatInfo.additionalInfo;
+            }
         }
+    },
+    created() {
+        this.retrieveData();
     }
 }
 </script>
