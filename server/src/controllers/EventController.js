@@ -40,8 +40,9 @@ const getLimited = async (req, res) => {
     let events;
     const limit = req.params.limit;
 
-    if (req.query.sectorId) {
+    if (req.query.placeId) {
         events = await eventService.findByPlaceId(req.query.placeId);
+        events.slice(0, limit);
     } else {
         events = await eventService.getLimited(limit);
     }
@@ -132,6 +133,7 @@ module.exports = {
     get,
     getById,
     getByPlaceId,
+    getLimited,
     post,
     put,
     remove

@@ -5,7 +5,7 @@ const getAll = async () => {
 };
 
 const findById = async id => {
-    return await frontDeskRepository.findById();
+    return await frontDeskRepository.findById(id);
 };
 
 const save = async event => {

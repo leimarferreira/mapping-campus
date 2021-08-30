@@ -2,7 +2,9 @@ const { Treasury } = require("../../models");
 
 const getAll = async () => {
     try {
-        const treasuryInfos = await Treasury.findAll();
+        const treasuryInfos = await Treasury.findAll({
+            include: { all: true }
+        });
         return treasuryInfos;
     } catch (error) {
         throw error;
@@ -13,8 +15,9 @@ const findById = async id => {
     try {
         const treasuryInfo = Treasury.findOne({
             where: {
-                id: id
-            }
+                eventId: id
+            },
+            include: { all: true }
         });
 
         return treasuryInfo;
@@ -49,6 +52,10 @@ const update = async (id, event) => {
             openingTime: event.openingTime,
             closingTime: event.closingTime,
             additionalInfo: event.additionalInfo
+        }, {
+            where: {
+                eventId: id
+            }
         });
 
         return treasuryInfo[1][0];
@@ -59,13 +66,12 @@ const update = async (id, event) => {
 
 const remove = async id => {
     try {
-        const treasuryInfo = await Treasury.destroy({
+        const treasury = await findById(id);
+        return await Event.destroy({
             where: {
-                id: id
+                id: treasury.eventId
             }
         });
-
-        return treasuryInfo;
     } catch (error) {
         throw error;
     }

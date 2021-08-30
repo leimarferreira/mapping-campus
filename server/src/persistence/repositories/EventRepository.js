@@ -13,8 +13,12 @@ const getAll = async () => {
 
 const getLimited = async (limit) => {
     try {
-        const res = await pool.query(`SELECT * FROM events LIMIT ${limit}`)
-        return res.rows;
+        const events = await Event.findAll({
+            limit: limit,
+            include: { all: true }
+        })
+        
+        return events;
     } catch (error) {
         return error;
     }
@@ -27,8 +31,7 @@ const findById = async id => {
                 id: id
             },
             include: {
-                all: true,
-                nested: true
+                all: true
             }
         });
 
@@ -45,8 +48,7 @@ const findByPlaceId = async id => {
                 placeId: id
             },
             include: {
-                all: true,
-                nested: true
+                all: true
             }
         });
 
@@ -108,6 +110,7 @@ module.exports = {
     getAll,
     findById,
     findByPlaceId,
+    getLimited,
     save,
     update,
     remove

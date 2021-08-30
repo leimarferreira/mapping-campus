@@ -1,8 +1,11 @@
-const { FrontDesk } = require("../../models/");
+const { FrontDesk, Event } = require("../../models/");
 
 const getAll = async () => {
     try {
-        const frontDeskInfos = await FrontDesk.findAll();
+        const frontDeskInfos = await FrontDesk.findAll({
+            include: { all: true }
+        });
+        
         return frontDeskInfos;
     } catch (error) {
         throw error;
@@ -13,8 +16,9 @@ const findById = async id => {
     try {
         const frontDeskInfo = FrontDesk.findOne({
             where: {
-                id: id
-            }
+                eventId: id
+            },
+            include: { all: true }
         });
 
         return frontDeskInfo;
@@ -51,7 +55,7 @@ const update = async (id, event) => {
             additionalInfo: event.additionalInfo
         }, {
             where: {
-                id: id
+                eventId: id
             },
             returning: true
         });
@@ -64,13 +68,12 @@ const update = async (id, event) => {
 
 const remove = async id => {
     try {
-        const frontDeskInfo = await FrontDesk.destroy({
+        const frontDesk = await findById(id);
+        return await Event.destroy({
             where: {
-                id: id
+                id: frontDesk.eventId
             }
         });
-
-        return frontDeskInfo;
     } catch (error) {
         throw error;
     }

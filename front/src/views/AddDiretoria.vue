@@ -7,9 +7,9 @@
         <form class="block" @submit.prevent="onsubmit">
             <h3>Diretor </h3>
             <label class="form-label">Nome: </label>
-            <input required class="form-control-md" id="name" v-model="name" type="text">
+            <input required class="form-control-md" id="name" v-model="directorName" type="text">
             <label class="form-label">Email: </label>
-            <input required class="form-control-md" id="email" v-model="email" type="text">
+            <input required class="form-control-md" id="email" v-model="directorEmail" type="text">
             <h3>Vice-Diretor </h3>
             <label class="form-label">Nome: </label>
             <input required class="form-control-md" id="vice-name" v-model="viceName" type="text">
@@ -24,7 +24,7 @@
             <label class="form-label">Informacoes adicionais: </label>
             <input class="form-control-md" id="info" v-model="info" type="text">
             <div class="buttons">
-                <button class="button">Adicionar</button>
+                <button class="button">Enviar</button>
             </div>
         </form>
 
@@ -46,8 +46,8 @@ export default {
     },
     data() {
         return {
-            name: "",
-            email: "",
+            directorName: "",
+            directorEmail: "",
             viceName: "",
             viceEmail: "",
             opening: "",
@@ -57,21 +57,40 @@ export default {
     },
     methods: {
         onsubmit() {
-            
-            const idSector = this.$route.params.idSector;
-            api.post("/events", {
+            const schoolBoardInfo = {
                 type: "diretoria",
-                
-                    name: this.name,
-                    email: this.email,
-                    viceName: this.viceName,
-                    viceEmail: this.viceEmail,
-                    opening: this.opening,
-                    closing: this.closing,
-                    info: this.info
-               
-            })
+                name: "Diretoria",
+                directorName: this.directorName,
+                directorEmail: this.directorEmail,
+                viceDirectorName: this.viceName,
+                viceDirectorEmail: this.viceEmail,
+                openingTime: this.opening,
+                closingTime: this.closing,
+                additionalInfo: this.info,
+                placeId: this.$route.params.idLocal
+            };
+
+            if (this.$route.params.idEvento) {
+                api.put(`/schoolboard/${this.$route.params.idEvento}`, schoolBoardInfo);
+            } else {
+                api.post("/schoolboard", schoolBoardInfo);
+            }
         },
+        async retrieveData() {
+            if (this.$route.params.idEvento) {
+                const schoolBoardInfo = (await api.get(`/schoolboard/${this.$route.params.idEvento}`)).data;
+                this.directorName = schoolBoardInfo.directorName;
+                this.directorEmail = schoolBoardInfo.directorEmail;
+                this.viceName = schoolBoardInfo.viceDirectorName;
+                this.viceEmail = schoolBoardInfo.viceDirectorEmail;
+                this.opening = schoolBoardInfo.openingTime;
+                this.closing = schoolBoardInfo.closingTime;
+                this.info = schoolBoardInfo.additionalInfo;
+            }
+        }
+    },
+    created() {
+        this.retrieveData();
     }
 }
 </script>

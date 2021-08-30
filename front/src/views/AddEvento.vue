@@ -6,13 +6,15 @@
 import SalasDeAula from '@/views/AddSalasDeAula'
 import Coordenacao from '@/views/AddCoordenacao'
 import SalaDosProfessores from '@/views/AddSalaDosProfessores'
+import Administracao from "@/views/AddAdministracao";
 
 export default {
     name: "add-evento",
     components: {
         SalasDeAula,
         Coordenacao,
-        SalaDosProfessores
+        SalaDosProfessores,
+        Administracao
     },
     data() {
         return {

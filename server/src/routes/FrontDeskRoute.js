@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const frontDesk = require("../controllers/FrontDeskController");
+const frontDeskController = require("../controllers/FrontDeskController");
+const requireLogin = require("../middleware/requireLogin");
 
-router.get("/", frontDesk.getAll);
-router.get("/:id(\\d+)", frontDesk.getById);
-router.post("/", frontDesk.save);
-router.put("/:id(\\d+)", frontDesk.update);
-router.delete("/:id(\\d+)", frontDesk.remove);
+router.get("/", frontDeskController.getAll);
+router.get("/:id(\\d+)", frontDeskController.getById);
+router.post("/", requireLogin, frontDeskController.save);
+router.put("/:id(\\d+)", requireLogin, frontDeskController.update);
+router.delete("/:id(\\d+)", requireLogin, frontDeskController.remove);
 
 module.exports = router;

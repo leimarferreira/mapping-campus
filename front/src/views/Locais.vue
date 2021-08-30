@@ -4,10 +4,11 @@
         <PageFooter/>
     </div>
    
+    <button class="buttonAdicionaLocal" @click="redirectToForm">Adicionar novo local</button>
+
     <div v-for="place in places" :key="place.id">
         <button class="buttonAdicionaLocaln" @click="redirectToPlace(place.id)">{{ place.name }}</button>
     </div>
-     <button class="buttonAdicionaLocal" @click="redirectToForm">Adicionar novo local</button>
 </div>
 </template>
 
@@ -41,8 +42,6 @@ export default {
                     }
                 })).data;
             } catch (error) {
-                console.dir(error);
-                // TODO: tratar esse erro
             }
         }
     },
