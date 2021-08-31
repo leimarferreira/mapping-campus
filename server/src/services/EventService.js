@@ -16,6 +16,10 @@ const findByPlaceId = async id => {
     return await eventRepository.findByPlaceId(id);
 };
 
+const findByName = async name => {
+    return await eventRepository.findByName(name);
+}
+
 const save = async event => {
     return await eventRepository.save(event);
 };
@@ -32,6 +36,7 @@ module.exports = {
     getAll,
     findById,
     findByPlaceId,
+    findByName,
     getLimited,
     save,
     update,

@@ -1,4 +1,3 @@
-const Place = require("../models/Place");
 const placeService = require("../services/PlaceService");
 
 const get = async (req, res) => {
@@ -11,7 +10,15 @@ const get = async (req, res) => {
             places = await placeService.getAll();
         }
 
-        const status = places && places.length > 0 ? 200 : 204;
+        if (req.query.limit) {
+            places = places.slice(0, req.query.limit);
+        }
+
+        if (places && places.length > 0) {
+            res.status(200).json(places);
+        } else {
+            res.status(204).end();
+        }
 
         res.status(status).json(places);
     } catch (error) {
@@ -47,6 +54,26 @@ const getById = async (req, res) => {
         res.status(500).end();
     }
 
+};
+
+const getByName = async (req, res) => {
+    try {
+        const name = req.params.name;
+
+        const places = await placeService.findByName(name);
+
+        if (req.query.limit) {
+            places = places.slice(0, req.query.limit);
+        }
+
+        if (places && places.length > 0) {
+            res.status(200).json(places);
+        } else {
+            res.status(204).end();
+        }
+    } catch {
+        res.status(400).end();
+    }
 };
 
 const post = async (req, res) => {
@@ -93,6 +120,7 @@ const remove = async (req, res) => {
 module.exports = {
     get,
     getById,
+    getByName,
     post,
     put,
     remove

@@ -1,4 +1,5 @@
 const { Event } = require("../../models/");
+const { Op } = require("sequelize");
 
 const getAll = async () => {
     try {
@@ -58,6 +59,18 @@ const findByPlaceId = async id => {
     }
 };
 
+const findByName = async name => {
+    const events = await Event.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `%${name}%`
+            }
+        }
+    });
+
+    return events;
+}
+
 const save = async record => {
     try {
         const event = Event.build({
@@ -111,6 +124,7 @@ module.exports = {
     findById,
     findByPlaceId,
     getLimited,
+    findByName,
     save,
     update,
     remove

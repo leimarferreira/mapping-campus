@@ -26,6 +26,10 @@ const get = async (req, res) => {
             events = await eventService.getAll();
         }
 
+        if (req.query.limit) {
+            events = events.slice(0, req.query.limit);
+        }
+
         if (events.length > 0) {
             res.status(200).json(events);
         } else {
@@ -70,6 +74,10 @@ const getByPlaceId = async (req, res) => {
         let id = req.params.id;
 
         const events = await eventService.findByPlaceId(id);
+
+        if (req.query.limit) {
+            events = events.splash(0, limit);
+        }
         
         if (events) {
             res.status(200).json(events);
@@ -81,6 +89,26 @@ const getByPlaceId = async (req, res) => {
     }
 
 };
+
+const getByName = async (req, res) => {
+    try {
+        const name = req.params.name;
+
+        const events = await eventService.findByName(name);
+
+        if (req.query.limit) {
+            events = events.splash(0, limit);
+        }
+
+        if (events && events.length > 0) {
+            res.status(200).json(events);
+        } else {
+            res.status(204).end();
+        }
+    } catch {
+        res.status(400).end();
+    }
+}
 
 const post = async (req, res) => {
     const type = req.body.type;
@@ -134,6 +162,7 @@ module.exports = {
     getById,
     getByPlaceId,
     getLimited,
+    getByName,
     post,
     put,
     remove

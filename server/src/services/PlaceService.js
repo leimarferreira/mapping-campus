@@ -16,6 +16,10 @@ const findBySectorId = async id => {
     return await placeRepository.findBySectorId(id);
 }
 
+const findByName = async name => {
+    return await placeRepository.findByName(name);
+}
+
 const save = async record => {
     return await placeRepository.save(record);
 }
@@ -32,6 +36,7 @@ module.exports = {
     getAll,
     findById,
     findBySectorId,
+    findByName,
     save,
     update,
     remove

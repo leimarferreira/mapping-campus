@@ -1,4 +1,5 @@
 const { Place } = require("../../models/");
+const { Op } = require("sequelize");
 
 const getAll = async () => {
     try {
@@ -32,6 +33,18 @@ const findById = async (id) => {
         throw error;
     }
 };
+
+const findByName = async name => {
+    const place = await Place.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `%${name}%`
+            }
+        }
+    });
+
+    return place;
+}
 
 const findBySectorId = async (id) => {
     try {
@@ -98,6 +111,7 @@ module.exports = {
     getAll,
     findById,
     findBySectorId,
+    findByName,
     save,
     update,
     remove
