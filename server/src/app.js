@@ -14,6 +14,7 @@ const secretariatRoute = require("./routes/SecretariatRoute");
 const schoolBoardRoute = require("./routes/SchoolBoardRoute");
 const treasuryRoute = require("./routes/TreasuryRoute");
 const authenticationRoute = require("./routes/AuthenticationRoute");
+const mapsRoute = require("./routes/MapsRoute");
 
 const app = express();
 
@@ -37,5 +38,6 @@ app.use("/professorroom", professorRoomRoute);
 app.use("/secretariat", secretariatRoute);
 app.use("/schoolboard", schoolBoardRoute);
 app.use("/treasury", treasuryRoute);
+app.use("/maps", mapsRoute);
 
 module.exports = app;
