@@ -4,7 +4,7 @@
         <PageFooter/>
     </div>
    
-    <button class="buttonAdicionaLocal" @click="redirectToForm">Adicionar novo local</button>
+    <button class="buttonAdicionaLocal" @click="redirectToForm" v-if="$root.$data.isLoggedIn">Adicionar novo local</button>
 
     <div v-for="place in places" :key="place.id">
         <button class="buttonAdicionaLocaln" @click="redirectToPlace(place.id)">{{ place.name }}</button>

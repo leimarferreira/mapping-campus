@@ -24,7 +24,7 @@
             <label class="form-label">Informacoes adicionais: </label>
             <input class="form-control-md" id="info" v-model="info" type="text">
             <div class="buttons">
-                <button class="button">Enviar</button>
+                <button class="button" v-if="$root.$data.isLoggedIn">Enviar</button>
             </div>
         </form>
 

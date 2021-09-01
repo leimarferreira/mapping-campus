@@ -5,6 +5,11 @@
 <script>
 export default {
     name: "App",
+    data() {
+        return {
+            isLoggedIn: false
+        }
+    }
 }
 </script>
 

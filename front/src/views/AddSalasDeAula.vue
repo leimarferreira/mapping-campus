@@ -28,7 +28,7 @@
             <textarea class="form-control-md" name="outros" id="outros" cols="30" rows="5" v-model="aula.informacoesAdicionais"></textarea>
 
             <div class="buttons">
-                <button class="button" @click.prevent="submitForm">Enviar</button>
+                <button class="button" @click.prevent="submitForm" v-if="$root.$data.isLoggedIn">Enviar</button>
             </div>
 
             <div class="pageFooter">

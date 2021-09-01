@@ -23,7 +23,12 @@ const logout = (req, res) => {
     res.status(200).end();
 }
 
+const isLoggedIn = (req, res) => {
+    res.status(200).end();
+}
+
 module.exports = {
     authenticate,
-    logout
+    logout,
+    isLoggedIn
 };
