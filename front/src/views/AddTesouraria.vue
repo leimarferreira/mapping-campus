@@ -52,7 +52,7 @@ export default {
         onsubmit() {
             const treasuryInfo = {
                 type: "tesouraria",
-                name: "Tesouraria",
+                name: "Informações",
                 responsibleName: this.responsibleName,
                 responsibleEmail: this.responsibleEmail,
                 openingTime: this.opening,

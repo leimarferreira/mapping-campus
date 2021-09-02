@@ -19,8 +19,6 @@ const get = async (req, res) => {
         } else {
             res.status(204).end();
         }
-
-        res.status(status).json(places);
     } catch (error) {
         res.status(500).end();
     }
@@ -60,10 +58,14 @@ const getByName = async (req, res) => {
     try {
         const name = req.params.name;
 
-        const places = await placeService.findByName(name);
+        let places = await placeService.findByName(name);
 
         if (req.query.limit) {
             places = places.slice(0, req.query.limit);
+        }
+
+        if (req.query.sectorId) {
+            places = places.filter(place => place.sectorId == req.query.sectorId);
         }
 
         if (places && places.length > 0) {
@@ -71,7 +73,7 @@ const getByName = async (req, res) => {
         } else {
             res.status(204).end();
         }
-    } catch {
+    } catch (error) {
         res.status(400).end();
     }
 };

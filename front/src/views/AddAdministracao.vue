@@ -1,5 +1,6 @@
 <template>
     <div>
+        <label for="component">Tipo de local: </label>
         <select name="component" id="component" v-model="currentComponent">
             <option value="diretoria">Diretoria</option>
             <option value="recepcao">Recepção</option>

@@ -18,6 +18,13 @@ import BackButton from '@/components/BackButton';
 export default {
     components: {
         BackButton
+    },
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            if (vm.$root.$data.isLoggedIn) {
+                vm.$router.push("/setores");
+            }
+        })
     }
 }
 </script>

@@ -37,11 +37,10 @@ export default{
                 password: this.password
             };
 
-            const response = await api.post("/authentication", credentials);
-
-            if (response.status == 200) {
+            try {
+                await api.post("/authentication", credentials);
                 this.$router.push("/setores");
-            } else {
+            } catch {
                 this.warns.add("Erro ao tentar realizar login.");
             }
         }

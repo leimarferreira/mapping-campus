@@ -15,7 +15,7 @@
             <label class="form-label" for="password">Senha:</label>
             <input required class="form-control-md" type="password" name="password" id="password" v-model="password">
             <div class="buttons">
-                <button class="buttonCadastroSair" type="button">Excluir</button>
+                <button class="buttonCadastroSair" type="button" @click="remove">Excluir</button>
                 <button id="submit" class="buttonCadastroConfirma" type="submit" @click="submitForm">Atualizar</button>
             </div>
         </form>
@@ -39,25 +39,41 @@ export default {
         PageFooter
     },
     methods: {
-        submitForm() {
-            const idLocal = this.$route.params.idLocal;
-            const configInfo = {
-                placeId: idLocal,
-                type: this.configInfo.tipo,
-                name: this.configInfo.nome,
-                email: this.configInfo.email,
-                number: this.configInfo.number,
-                password: this.configInfo.password,
-                };
+        async submitForm() {
+            const userInfo = {
+                name: this.name,
+                email: this.email,
+                number: this.number,
+                password: this.password
+            };
+
+            const userId = this.$root.$data.currentUserId;
+
+            if (userId != -1) {
+                await api.put(`/users/${userId}`, userInfo);
+            }
+
+            this.retriveData();
         },
         async retriveData() {
-            const idEvento = this.$route.params.idEvento;
-            if (idEvento) {
-                const event = (await api.get(`/users/${idEvento}`)).data;
-                this.configInfo.nome = event.name;
-                this.configInfo.email = event.email;
-                this.configInfo.number = event.number;
-                this.configInfo.password = event.password;
+            const userId = this.$root.$data.currentUserId;
+
+            if (userId != -1) {
+                const userInfo = (await api.get(`/users/${userId}`)).data;
+
+                this.name = userInfo.name;
+                this.email = userInfo.email;
+                this.number = userInfo.number;
+                this.password = userInfo.password;
+            }
+        },
+        async remove() {
+            const userId = this.$root.$data.currentUserId;
+
+            if (userId != -1) {
+                await api.delete(`/users/${userId}`);
+                await api.get("/authentication/logout");
+                this.$router.push("/");
             }
         }
     },

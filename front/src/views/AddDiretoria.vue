@@ -59,7 +59,7 @@ export default {
         onsubmit() {
             const schoolBoardInfo = {
                 type: "diretoria",
-                name: "Diretoria",
+                name: "Informações",
                 directorName: this.directorName,
                 directorEmail: this.directorEmail,
                 viceDirectorName: this.viceName,

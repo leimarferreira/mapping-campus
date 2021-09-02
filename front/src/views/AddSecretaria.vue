@@ -51,7 +51,7 @@ export default {
     methods: {
         submit() {
             const secretariatInfo = {
-                name: "Secretaria",
+                name: "Informações",
                 type: "secretaria",
                 responsibleName: this.responsibleName,
                 responsibleEmail: this.responsibleEmail,

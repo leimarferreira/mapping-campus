@@ -7,10 +7,12 @@ const vm = createApp(App).use(router).mount('#app');
 
 router.beforeEach(async (to, from, next) => {
     try {
-        await api.get("/authentication/isloggedin");
+        const response = await api.get("/authentication/isloggedin");
         vm.$data.isLoggedIn = true;
+        vm.$data.currentUserId = response.data;
     } catch {
         vm.$data.isLoggedIn = false;
+        vm.$data.currentUserId = -1;
     }
     
     next();

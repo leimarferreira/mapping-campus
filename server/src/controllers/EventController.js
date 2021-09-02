@@ -94,10 +94,14 @@ const getByName = async (req, res) => {
     try {
         const name = req.params.name;
 
-        const events = await eventService.findByName(name);
+        let events = await eventService.findByName(name);
 
         if (req.query.limit) {
-            events = events.splash(0, limit);
+            events = events.slice(0, Number.parseInt(req.query.limit));
+        }
+
+        if (req.query.placeId) {
+            events = events.filter(event => event.placeId == req.query.placeId);
         }
 
         if (events && events.length > 0) {
@@ -105,7 +109,7 @@ const getByName = async (req, res) => {
         } else {
             res.status(204).end();
         }
-    } catch {
+    } catch (error){
         res.status(400).end();
     }
 }

@@ -52,7 +52,7 @@ export default {
         submitForm() {
             api.post("/frontdesk", {
                 type: "recepcao",
-                name: "Recepção",
+                name: "Informações",
                 responsibleName: this.responsibleName,
                 responsibleEmail: this.responsibleName,
                 openingTime: this.opening,

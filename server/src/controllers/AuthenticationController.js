@@ -24,7 +24,7 @@ const logout = (req, res) => {
 }
 
 const isLoggedIn = (req, res) => {
-    res.status(200).end();
+    res.status(200).json(req.session.user.id);
 }
 
 module.exports = {

@@ -5,8 +5,15 @@
     </div>
     <button class="buttonAdicionaLocal" @click="redirectToForm" v-if="$root.$data.isLoggedIn">Adicionar novo local</button>
 
+    <br><label for="nome">Nome</label>
+    <input type="text" name="nome" id="nome" v-model="name">
+    <label for="quantidade">Quantidade</label>
+    <input type="text" name="quantidade" id="quantidade" v-model="limit">
+    <button @click="filter">Pesquisar</button>
+
     <div v-for="place in places" class="blockLocal" :key="place.id">
         <button class="buttonLocal" @click="redirectToPlace(place.id)">{{ place.name }}</button>
+        <delete-button v-if="$root.$data.isLoggedIn" @click="remove(place.id)"/>
     </div>
 
 </div>
@@ -15,15 +22,19 @@
 <script>
 import api from "@/api/api";
 import PageFooter from '../components/PageFooter.vue';
+import DeleteButton from '../components/DeleteButton.vue';
 
 export default {
     data() {
         return {
-            places: []
+            places: [],
+            name: "",
+            limit: ""
         }
     },
     components: {
-        PageFooter
+        PageFooter,
+        DeleteButton
     },
     methods: {
         redirectToForm() {
@@ -42,6 +53,21 @@ export default {
                     }
                 })).data;
             } catch (error) {
+            }
+        },
+        async remove(id) {
+            await api.delete(`/places/${id}`);
+            this.retrieveData();
+        },
+        async filter() {
+            try {
+                this.places = (await api.get(`/places/${this.name}`, {
+                    params: {
+                        sectorId: this.$route.params.idSetor,
+                        limit: this.limit
+                    }
+                })).data;
+            } catch {
             }
         }
     },

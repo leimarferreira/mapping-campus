@@ -7,7 +7,8 @@ export default {
     name: "App",
     data() {
         return {
-            isLoggedIn: false
+            isLoggedIn: false,
+            currentUserId: -1
         }
     }
 }
