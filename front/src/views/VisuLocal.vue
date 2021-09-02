@@ -1,9 +1,8 @@
 <template>
-<div class="backButton">
-        <PageFooter/>
-    </div>
-    <div>
-        <button class="buttonAdicionaLocal" @click="redirectToForm" v-if="$root.$data.isLoggedIn">Adicionar evento</button>
+    <div class="main">
+        <div class="backButton">
+            <PageFooter/>
+        </div>
         <div v-for="event in events" class="blockLocal" :key="event.id">
             <button class="buttonLocal" @click="redirectToEvent(event.id)">{{ event.name }}</button>
         </div>

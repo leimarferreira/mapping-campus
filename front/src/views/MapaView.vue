@@ -2,13 +2,13 @@
     <div class="main" >
         <div class="topInlineForm">
             <PageFooter/>
-            <h1 class="tituloMapas">Guia da Universidade</h1>
-            <img v-if="isMapVisible3" :src="map3URL" class="imagemMapas" width="1100" height="400" alt="" >
-            <img v-if="isMapVisible4" :src="map4URL" class="imagemMapas" width="1100" height="400" alt="" >
-            <img v-if="isMapVisible1" :src="map1URL" class="imagemMapas" width="1100" height="400" alt="" >
-            <img v-if="isMapVisible2" :src="map2URL" class="imagemMapas" width="1100" height="400" alt="" >
+            <h1 class="tituloSetores">Guia da Universidade</h1>
+            <img v-if="isMapVisible3" :src="map3URL" class="imagemMapas" width="800" height="350" alt="" >
+            <img v-if="isMapVisible4" :src="map4URL" class="imagemMapas" width="800" height="350" alt="" >
+            <img v-if="isMapVisible1" :src="map1URL" class="imagemMapas" width="800" height="350" alt="" >
+            <img v-if="isMapVisible2" :src="map2URL" class="imagemMapas" width="800" height="350" alt="" >
             <form action="" v-if="$root.$data.isLoggedIn">
-                <label for="map-type">Selecione o mapa para fazer upload</label>
+                <label class="tituloLabel" for="map-type">Selecione o mapa para fazer upload</label>
                 <select name="map-type" id="map-type" v-model="selectedMap">
                     <option value="map1">Bloco Administrativo Inferior</option>
                     <option value="map2">Bloco Administrativo Superior</option>

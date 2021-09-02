@@ -78,6 +78,22 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
 }
+.blockLocal{
+    height: 12vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.blockLocais{
+    height: 12vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
 
 label {
     margin-bottom: 5px;
@@ -124,7 +140,14 @@ input:focus {
     flex-direction: column; 
     align-items: center;
     justify-content: center;
+    color: #388c91;
 }
+
+.tituloLabel{
+    color: #388c91;
+    margin-left: 10%;
+}
+
 
 .tituloMapas{
     display: flex;
@@ -142,6 +165,22 @@ input:focus {
     margin-bottom: 5px;
 }
 
+.buttonLocal{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 300px;
+    min-height: 50px;
+}
+
+.buttonLocais{
+    color: #388c91;
+    border: 1px solid #388c91 ;
+    border-radius: 50px;
+    min-width: 300px;
+    min-height: 50px;
+}
+
 .buttonMapas{
     color: #388c91;
     border: 1px solid #388c91 ;
@@ -152,7 +191,7 @@ input:focus {
 }
 
 .imagemMapas{
-    margin-left: 100px;
+    margin-left: 20%;
 }
 
 
@@ -315,7 +354,18 @@ input:focus {
     border-radius: 50px;
     min-width: 300px;
     min-height: 50px;
-    margin-bottom: 5px;
+    margin-left: 38.2%;
+    margin-bottom: 7px;
+    background-color: #7cff48;
+}
+
+.buttonImagemConfig{
+    position: absolute;
+    margin-left: 95%;
+    margin-top: 1%;
+    width: 50px;
+    height: 50px;
+    border-radius: 80px;
 }
 
 

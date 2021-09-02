@@ -1,28 +1,25 @@
 <template>
     <div class="main" >
         <div class="topInlineForm">
-            <button @click="$router.push('/configUser/')" class="buttonImagemConfig">
-                    <img src="@/assets/config.png" width="30" height="30" alt="" >
-            </button>
             <PageFooter/>
             <h1 class="tituloSetores">Setores</h1>
             <div class="buttonsBlockSetores">
-                <button class="buttonSetores" @click="$router.push('/setores/salas-de-aula')">
+                <button class="buttonSetores" @click="$router.push('/setoresVisualizacao/salas-de-aula')">
                 <img src="@/assets/salaDeAula.png" class="imagemSetores" width="40" height="30" alt="" >
                 <br>
                 Sala de Aula
                 </button>
-                <button class="buttonSetores" @click="$router.push('/setores/coordenacao')">
+                <button class="buttonSetores" @click="$router.push('/setoresVisualizacao/coordenacao')">
                 <img src="@/assets/coordenacao.png" class="imagemSetores" width="40" height="30" alt="" >
                 <br>
                 Coordenação
                 </button> 
-                <button class="buttonSetores" @click="$router.push('/setores/administracao')">
+                <button class="buttonSetores" @click="$router.push('/setoresVisualizacao/administracao')">
                 <img src="@/assets/administracao.png" class="imagemSetores" width="40" height="30" alt="" >
                 <br>
                 Administração
                 </button>
-                <button class="buttonSetores" @click="$router.push('/setores/sala-dos-professores')">
+                <button class="buttonSetores" @click="$router.push('/setoresVisualizacao/sala-dos-professores')">
                 <img src="@/assets/professor.png" class="imagemSetores" width="40" height="30" alt="" >
                 <br>
                 Sala dos Professores

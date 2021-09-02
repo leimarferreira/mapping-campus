@@ -3,12 +3,10 @@
     <div class="backButton">
         <PageFooter/>
     </div>
-    <button class="buttonAdicionaLocal" @click="redirectToForm" v-if="$root.$data.isLoggedIn">Adicionar novo local</button>
 
-    <div v-for="place in places" class="blockLocal" :key="place.id">
-        <button class="buttonLocal" @click="redirectToPlace(place.id)">{{ place.name }}</button>
+    <div v-for="place in places" class="blockLocais" :key="place.id">
+        <button class="buttonLocais" @click="redirectToPlace(place.id)">{{ place.name }}</button>
     </div>
-
 </div>
 </template>
 
@@ -32,7 +30,7 @@ export default {
         },
         redirectToPlace(id) {
             const idSetor = this.$route.params.idSetor;
-            this.$router.push(`/setores/${idSetor}/local/${id}`);
+            this.$router.push(`/setores/${idSetor}/visuLocal/${id}`);
         },
         async retrieveData() {
             try {

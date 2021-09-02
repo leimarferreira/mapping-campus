@@ -6,7 +6,7 @@
         <img src="@/assets/logoTransparente.png" width="300" height="300" alt="">
     </div>
 
-        <router-link class="homeIcons" to="/setores"> 
+        <router-link class="homeIcons" to="/setoresVisualizacao"> 
             <span><img src="@/assets/adm.svg" width="200" height="200" alt=""></span>
             <p> Atividades</p>
         </router-link>
