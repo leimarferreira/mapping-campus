@@ -27,11 +27,12 @@
             <div class="buttons">
                 <button class="button" v-if="$root.$data.isLoggedIn">Enviar</button>
             </div>
+            <div class="pageFooter">
+                <PageFooter/>
+            </div>
         </form>
 
-        <div class="pageFooter">
-            <PageFooter/>
-        </div>
+        
     </div>
 </template>
 

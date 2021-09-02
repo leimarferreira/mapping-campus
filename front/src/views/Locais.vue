@@ -4,12 +4,14 @@
         <PageFooter/>
     </div>
     <button class="buttonAdicionaLocal" @click="redirectToForm" v-if="$root.$data.isLoggedIn">Adicionar novo local</button>
-
-    <br><label for="nome">Nome</label>
-    <input type="text" name="nome" id="nome" v-model="name">
-    <label for="quantidade">Quantidade</label>
-    <input type="text" name="quantidade" id="quantidade" v-model="limit">
-    <button @click="filter">Pesquisar</button>
+    <div class="blockPesquisar">
+        <br><label for="nome" class="pesquisarNome">Nome: </label>
+        <input type="text" name="nome" id="nome" v-model="name">
+        <label for="quantidade" class="pesquisarQuantidade">Quantidade: </label>
+        <input type="text" name="quantidade" id="pesquisarQuantidade" v-model="limit">
+        <button @click="filter" class="buttonPesquisar"> <img src="@/assets/lupa.png" width="20" height="20" alt="" ></button>
+    </div>
+    
 
     <div v-for="place in places" class="blockLocal" :key="place.id">
         <button class="buttonLocal" @click="redirectToPlace(place.id)">{{ place.name }}</button>

@@ -1,12 +1,9 @@
 <template>
     <div class="main" >
         <div class="topInlineForm">
-            <button v-if="$root.$data.isLoggedIn" @click="$router.push('/configUser/')" class="buttonImagemConfig">
-                    <img src="@/assets/config.png" width="30" height="30" alt="" >
-            </button>
+            <config-button v-if="$root.$data.isLoggedIn" class="buttonImagemConfig"/>
+            <mapa-button v-if="$root.$data.isLoggedIn" class="buttonMapa"/>
             <logout-button v-if="$root.$data.isLoggedIn" class="buttonLogout"/>
-
-            <PageFooter/>
             <h1 class="tituloSetores">Setores</h1>
             <div class="buttonsBlockSetores">
                 <button class="buttonSetores" @click="$router.push('/setores/salas-de-aula')">
@@ -38,12 +35,16 @@
 <script>
 import PageFooter from '../components/PageFooter.vue';
 import LogoutButton from '../components/LogoutButton.vue';
+import MapaButton from '../components/MapaButton.vue';
+import ConfigButton from '../components/ConfigButton.vue';
 
 export default {
     name: "Setores",
     components: {
         PageFooter,
-        LogoutButton
+        LogoutButton,
+        MapaButton,
+        ConfigButton
     }
 }
 </script>

@@ -24,11 +24,12 @@
            <div class="buttons">
                 <button class="button" @click.prevent="submitForm" v-if="$root.$data.isLoggedIn">Enviar</button>
            </div>
+           <div class="pageFooter">
+                <PageFooter/>
+            </div>
         </form>
 
-        <div class="pageFooter">
-            <PageFooter/>
-        </div>
+        
     </div>
 </template>
 
